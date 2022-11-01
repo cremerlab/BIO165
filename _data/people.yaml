@@ -9,17 +9,15 @@
 # of the `page01_people.md` file.
 # ##############################################################################
 - author:
-  name: Instructor 1
-  link: "http://google.com"
+  name: Jonas Cremer
+  link: "https://cremerlab.github.io"
   title: Instructor
-  img: rob.jpg
+#  img: rob.jpg
   other_info:
-     Email Address: "blank [at] university [dot] gov"
+     Email Address: "jbcremer [at] stanford [dot] edu"
 
 - author:
-  name: Instructor 2 without an image
+  name: Shaili Mathur
   title: TA 
-
-- author:
-  name: Instructor 3 without an image
-  title: TA
+  other_info:
+     Email Address: "shailim@stanford.edu"
