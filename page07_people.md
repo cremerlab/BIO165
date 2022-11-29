@@ -3,7 +3,7 @@ layout: page
 title: Instructors
 description: About the authors
 img: about.png 
-caption: "Instructors"
+caption: ""
 permalink: instructors
 sidebar: true
 ---

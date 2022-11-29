@@ -1,6 +1,6 @@
-title: BIO165
+title: BIO165 Quantitative cell biology
 description: >
-  Quantitative cell-physiology
+  Quantitative cell-physiology - from molecules to evolution
 baseurl: "/BIO165/" # the subpath of your site, In most cases this can be left blank
 url: "" # Base of your website.In most cases, this will be left blank
 data_url: "http://cremerlab.github.io/BIO165"

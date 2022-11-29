@@ -3,7 +3,7 @@ layout: page
 title: Description
 description: 
 img: BIO165_header.png 
-caption: "BIO165 Quantitative Cell Biology - from molecules to evolution"
+caption: "Image courtesey of Griffin Chure"
 permalink: description
 sidebar: true
 ---

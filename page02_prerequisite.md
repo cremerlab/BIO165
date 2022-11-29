@@ -3,7 +3,7 @@ layout: page
 title: Prerequisites
 description: 
 img: BIO165_header.png 
-caption: "BIO165 Quantitative Cell Biology - from molecules to evolution"
+%caption: "BIO165 Quantitative Cell Biology - from molecules to evolution"
 permalink: prerequisite
 sidebar: true
 ---
