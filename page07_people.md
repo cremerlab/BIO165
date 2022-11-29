@@ -10,13 +10,11 @@ sidebar: true
 
 ---
 
-
 <!--
 This page autogenerates a list of the people provided in the people.yaml file
 in the _data folder. Do not touch the code below unless you have an idea of what
 you're doing, or it will break the display of the authors. 
 -->
-
 
 
 <!-- Loop through each author in the data file -->
