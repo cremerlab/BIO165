@@ -1,0 +1,151 @@
+title: >
+  Schedule
+
+  We provide here a more detailed overview of the course content. The provided schedule is not final but will be adjusted during the course.
+
+
+  <h2> Week 1 </h2>
+
+  <b>Class Tuesday 01/10 10:30am: Cellular processes in a nutshell. </b> A recap of fundamental cell biology by numbers. Introduction of Escherichia coli, our reference organism, and why obsessively studied model organisms are so important in biology. Comment on the advantages and challenges of modern quantitative biology and why we need to integratively consider cell biology, ecology, and evolution.
+
+
+
+  <b> Dry lab Thursday, 01/12 10:30am: Team formation and initiation of the dry-lab projects. </b> Introduction to Python, GitHub, and principles of biological computation and data sharing. Analysis of cellular growth behavior. Discussion of growth experiments.
+
+
+  <b> Homework:</b> Commit  toGitHub repository on  Thursday 01/19 before class. The coarse makeup of cells by numbers.
+  <br>
+  <b> Methods and approaches:</b> Number Crunching, Python, GitHub, Data plotting and fitting. Quantitative cell-culturing.
+  <br>
+  <b> Datasets:</b> Growth curves of microbial cells.
+
+
+
+  <h2> Week 2 </h2>
+
+  <b> Class Tuesday, 01/17 10:30am: The dynamics of major cellular processes. </b> Transcription, translation, metabolism, and DNA replication from a dynamical perspective with a focus on rates and speeds.
+
+
+  <b> Dry lab Thursday, 01/19 10:30am: Modeling biomass accumulation and growth. </b> Intro to differential equations and the modeling of dynamical processes. Phenomenological models to describe growth. Growth differences and evolution.
+
+
+  <b> Homework:</b> Commit to GitHub repository on  Thursday 01/26 before class. Growth and evolutionary dynamics.
+  <br>
+  <b> Methods and approaches:</b> Differential equation (DEQ), numerical solutions of DEQ.
+  <br>
+  <b> Datasets:</b> Growth curves of E. coli.
+
+
+
+  <h2> Week 3 </h2>
+
+  <b> Class Tuesday, 01/24 10:30am: Cell growth and the coordination of different cellular processes. </b>
+  The coordination between ribosomal activity, metabolism, and protein synthesis.
+
+
+  <b> Dry lab - Thursday, 01/26 10:30am: Resource-allocation models to describe growth. </b>
+  Investigation of the model and how growth depends on model parameters.
+
+
+  <b> Homework:</b> Commit to GitHub repository by Thursday 02/02 before class.
+  <br>
+  <b> Methods and approaches:</b> arameter scans and sensitivity analyses. Comparison between data and modeling predictions.
+  <br>
+  <b> Datasets:</b> Measurements on ribosome content of cells and translation speeds.
+
+
+  <h2> Week 4 </h2>
+
+  <b> Class Tuesday, 01/31 10:30am: From gene expression to protein synthesis and cell composition.  </b>
+  A quantitative consideration of the central dogma and how cells coordinate gene expression, transcription, and translation.
+
+
+  <b> Dry lab, Thursday, 02/02 10:30am: Omics study to analyze the link between transcription and translation. </b>  Analysis of the relation between mRNA and protein abundance across growth conditions. Study of single genes and the entire collection of genes.
+
+
+  <b> Homework:</b> Commit to GitHub repository by Thursday 02/08 before class.
+  <br>
+  <b> Methods and approaches:</b> Proteomics, RNA-Seq, omics data-handling and analyses.
+  <br>
+  <b> Datasets:</b> RNA-Seq and proteomics datasets collected for E. coli growth on different conditions.
+
+  <h2> Week 5 </h2>
+
+  <b> Class Tuesday 02/07 10:30am: Fundamental principles of gene expression and regulation – Part I. </b>
+  A quantitative consideration of gene expression principles from the control of single genes to global models of expression control. Part I - transcription control. Introduction to transcription control as a major mode of gene regulation. Considerations of global regulation and the “competition” between genes.
+
+
+  <b> Dry lab Thursday, 02/08 10:30am: Thermodynamical models to predict transcription control. </b>
+  Introduction to thermodynamical models which are capable to describe growth. Discussion of different regulation models.
+  Homework: Explore the combinatorial power of transcription control
+
+
+  <b> Homework:</b> Commit to GitHub repository by Thursday 02/16 before class.
+  <br>
+  <b> Methods and approaches:</b> Transcription control.
+  <br>
+  <b> Datasets:</b> Gene expression data collected for different genes.
+
+
+  <h2> Week 6 </h2>
+
+  <b> Class Tuesday, 02/1410:30am: Fundamental principles of gene expression and regulation – Part II. </b>
+  A quantitative consideration of gene expression principles from the control of single genes to global models of expression control. Part II – central regulators and the global regulation and coordination of thousands of genes.  Discussion of different global regulation strategies cells use to coordinate thousands of genes.
+
+
+  <b> Dry lab - Thursday, 02/16 10:30am: the global regulation of amino acid and protein synthesis - a case study with bacteria </b>
+  Analyze how ppGpp sets the abundance of ribosomes, integrating mathematical modeling and datasets on ppGpp concentration and cellular composition collected for cells growing in different environments.
+
+  <b> Homework:</b> Commit to GitHub repository on Thursday 02/23 before class.
+  <br>
+  <b> Methods and approaches:</b> Integrative analysis.
+  <br>
+  <b> Datasets:</b> ppGpp abundance, proteomics and transcriptomics data.
+
+
+  <h2> Week 7 </h2>
+
+  <b> Class Tuesday, 02/21 10:30am: Cell-physiology and the acclimation to environments. </b>
+  After the quantitative introduction of cell-physiology, we finally analyze the tight link between cell-physiology and ecology. We will consider different adaptation strategies of microbial cells and the tradeoffs those strategies come with.
+
+
+  <b> Dry lab Thursday, 02/23 10:30am: Analysis of bacterial growth in changing conditions. </b>
+  Study how cells coordinate gene expression in rapidly changing environments.
+
+
+  <b> Homework:</b> Be ready to discuss thoughts on project questions on Thursday 02/23 before class.
+  <br>
+  <b> Datasets:</b> Growth behavior and gene expression when environmental conditions shift.
+
+  <h2> Week 8 </h2>
+
+  <b> Class Tuesday, 02/28 10:30am: Evolutionary dynamics and the intrinsic link with cell-physiology. </b>
+  Mutation and adaptation dynamics in laboratory evolution experiments. Rationalization by the constraints of cell-physiology.
+
+
+  <b> Dry lab Thursday, 03/02 10:30am: Project formulation. </b>
+  Team formation. Formulation of biological questions to dissect during the two-week project phase. We formulated some examples but encourage teams to come up with their own project set.
+
+
+  <b> Methods and datasets:</b> Depending on what projects need.
+
+  <h2> Week 9 </h2>
+
+  <b> Class Tuesday, 03/07 10:30am: To be determined. </b>
+  We will discuss additional biological topics depending on interests. Topics we cover can include the physiological comparison of different cell-lines, the cell-physiological constraints which shape the adaptation of microbes to specific environments, etc.
+
+
+  <b> Dry lab Thursday, 03/09 10:30am: Project phase. </b>
+  Discussions with instructors and other teams. Method introduction as needed.
+
+
+  <b> Methods and datasets:</b> Depending on what projects need.
+
+  <h2> Week 10 </h2>
+
+  <b> Dry lab Tuesday, 03/14 10:30am: Project phase. </b>
+  Discussions with instructors and other teams. Method introduction as needed.
+
+
+  <b> Final class Thursday, 03/16 10:30am: Project presentation. </b>
+  Presentation and discussion of project findings. Analysis of overall modeling/documentation generated.

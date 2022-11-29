@@ -1,12 +1,12 @@
 title: BIO165
-description: > 
+description: >
   Quantitative cell-physiology
 baseurl: "/BIO165/" # the subpath of your site, In most cases this can be left blank
 url: "" # Base of your website.In most cases, this will be left blank
 data_url: "http://cremerlab.github.io/BIO165"
 
 
-# You can include a logo for your work as a .png that is saved in the folder 
+# You can include a logo for your work as a .png that is saved in the folder
 social-github: cremerlab # add your Github handle here.
 # author-img: logo.png # Comment this line out if you don't want a logo. if
                      # absent, text will replace the logo postition.
@@ -25,4 +25,4 @@ plugins:
 
 # Files to exclude from the website build. You may not want to include all data
 # files for example.
-exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "data_files"]
+exclude: ["node_modules", "gulpfile.js", "page05_code.md","package.json", "yarn.lock", "data_files", "old_pages","page02_readings.md","page05_code.md","page04_homework.md"]

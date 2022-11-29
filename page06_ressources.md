@@ -1,15 +1,15 @@
 ---
 layout: page
-title: About
+title: Ressources
 description: 
 img: BIO165_header.png 
 caption: "BIO165 Quantitative Cell Biology - from molecules to evolution"
-permalink: index.html
+permalink: ressources
 sidebar: true
 ---
 
-# {{site.data.about.title}}
-{{site.data.about.authors}}
+# {{site.data.ressources.title}}
+{{site.data.ressources.authors}}
 
 {% for entry in site.data.about %}
 

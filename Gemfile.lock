@@ -88,6 +88,7 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-sitemap
   jemoji
+  webrick (~> 1.7)
 
 BUNDLED WITH
    2.3.22

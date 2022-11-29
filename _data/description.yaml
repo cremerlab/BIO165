@@ -1,0 +1,34 @@
+# ##############################################################################
+# ABOUT
+# ------------------------------------------------------------------------------
+# This data file contains all information that will be displayed on the home
+# page of your website. The fields `title` and `authors` are necessary. These
+# keys cannot be changed or they will not be displayed on the website.
+#
+# The remainder of the fileds can be changed to fit your needs. The field name
+# (e.g. abstract, summary, etc) Will appear with as H2 headings on the website.
+# The content below will appear
+
+title: >
+  Course description
+
+  These are exciting times to explore living systems! Over the last two centuries, scientists have revealed many of the cellular processes which enable life, often down to an astonishing molecular scale and precision. Advances in sequencing and other analysis methods have further led to unprecedented insights into the ecological and evolutionary processes which continuously drive the adaption of organisms and the environment they live in.
+
+  Time to more integratively consider these different processes! How are cellular processes coordinated to form a coherent entity capable to thrive? How is this cell physiology linked to the evolutionary and ecological processes?
+
+  <br/><br/>
+  In this course, we discuss our current understanding of the triangle of life spanned by cell-physiology, ecology, and evolution. As nothing makes much sense in biology without a deeper consideration of the cells which form living organisms, we start with a consideration of cell physiology which we then extend to integrate ecology and evolution. As our considerations are not possible without a more quantitative consideration of different processes and their relation, this course also introduces some of the most fundamental tools of modern quantitative biology.
+
+  <br/><br/>
+  To do so, the class combines lectures and dry-lab sessions. In the latter, students will work in teams to analyze data and explore mathematical modeling approaches. In the last two weeks, students will further quantitatively dissect a biological problem of their choice.
+  <br/><br/>
+  Based on this structure, we aim to foster in our role as instructors what we believe is key to teach quantitative biology to a broad group of students:
+    <ul>
+    <li> Learning should go beyond the accumulation of facts and include state-of-the-art research approaches. </li>
+    <li> An active learning approach is crucial to learn different analysis methods and their potential to understand biology. </li>
+    <li> We are committed to flattening learning curves and teaching students with very different preliminary knowledge and skillsets. No knowledge in advanced math or previous experience with coding is required to attend this course (basic knowledge in math is required though as outlined in more detail in the syllabus).</li>
+    <li> We promote the open-science movement and foster open teaching to make everything available to a bigger crowd. </li>
+    </ul>
+
+  <h1> Course syllabus </h1>
+  More details on course content and structure are provided in the course syllabus.

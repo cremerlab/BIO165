@@ -1,10 +1,10 @@
 ---
 layout: page
-title: People
+title: Instructors
 description: About the authors
-img: people.png 
-caption: "T4 Bacteriophage"
-permalink: people
+img: about.png 
+caption: "Instructors"
+permalink: instructors
 sidebar: true
 ---
 

@@ -1,0 +1,26 @@
+# ##############################################################################
+# ABOUT
+# ------------------------------------------------------------------------------
+# This data file contains all information that will be displayed on the home
+# page of your website. The fields `title` and `authors` are necessary. These
+# keys cannot be changed or they will not be displayed on the website.
+#
+# The remainder of the fileds can be changed to fit your needs. The field name
+# (e.g. abstract, summary, etc) Will appear with as H2 headings on the website.
+# The content below will appear
+
+title: >
+  Projects
+
+  In the final two weeks, teams will dissect a biological problem of their choice using some of the quantitative approaches we introduce during the course. Some examples are provided below but participants are  encouraged to formulate  biological questions.
+
+
+  <b> Growth of cancer cells: </b> Tumor growth is driven by fast-growing cells escaping control. What are the fundamental metabolic and regulatory changes needed to support faster growth? How do changes in ribosome content and the switch in metabolism promote fast protein synthesis and the fast replication of cancer cells?
+
+
+  <b> Variation in genome size: </b>
+  The genome size of microbes varies drastically across species.  Why is there this huge variation? What is the minimum genome size to form a living entity? What are the advantages and disadvantages to have a longer chromosome and harbor more genes?
+
+
+  <b> Life at different temperatures:  </b>
+  Most microbes are exposed to strongly changing temperatures. How do these variations affect cell growth and how do microbes cope with these variations? What are the possible advantages when temperatures remain within a narrow range, as encountered by cells forming warm-blooded organisms?

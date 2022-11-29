@@ -1,0 +1,24 @@
+# ##############################################################################
+# ABOUT
+# ------------------------------------------------------------------------------
+# This data file contains all information that will be displayed on the home
+# page of your website. The fields `title` and `authors` are necessary. These
+# keys cannot be changed or they will not be displayed on the website.
+#
+# The remainder of the fileds can be changed to fit your needs. The field name
+# (e.g. abstract, summary, etc) Will appear with as H2 headings on the website.
+# The content below will appear
+
+title: >
+  Prerequisites
+
+  This class is designed to be accessible for a broad cohort of senior undergraduate and graduate students with experiences in coding and math. To follow the course, some knowledge in basic math is required. Knowledge in advanced math and coding is explicitely NOT required and we also encourage those students with little previous experience to apply.
+
+
+  <b> Math:</b> Mathematical considerations are a fundamental part of quantitative biology. These do not always require advanced techniques in calculus and statistics but can simply start with a comparison of different numbers and the basic rules of arithmetics. In this course, we will apply beyond these basic approaches two techniques from the mathematical toolbox which are fundamentally important: differential equations and linear regression models.  Most techniques will be introduced during the class and prior in-depth knowledge is not required. More important than the previous knowledge is the interest and openness to learn these approaches. However, some familiarity with basic math is required and we recommend previous attendence of MATH 19/20/21, MATH 51 or equivalent courses.
+
+
+  <b> Coding:</b> Python is required to follow the dry-lab projects and some familiarity with coding is therefore helpful. However, we encourage students with all levels of coding experience to join. To lower learning barriers, we will provide introductory Jupyter notebooks for students with little or no coding experience. Students with more advanced experience on the other hand can work in teams to develop the provided modeling and data analysis scripts further and more deeply investigate the different biological problems we consider.
+
+
+  <b> Cell biology:</b> This course considers different fundamental processes of cell biology and their interactions. A basic knowledge of cell biology is thus recommended (e.g. BIO 82 or BIO 83 or other courses which introduce cells or cell physiology).

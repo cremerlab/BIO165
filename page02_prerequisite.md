@@ -1,15 +1,15 @@
 ---
 layout: page
-title: About
+title: Prerequisites
 description: 
 img: BIO165_header.png 
 caption: "BIO165 Quantitative Cell Biology - from molecules to evolution"
-permalink: index.html
+permalink: prerequisite
 sidebar: true
 ---
 
-# {{site.data.about.title}}
-{{site.data.about.authors}}
+# {{site.data.prerequisite.title}}
+{{site.data.prerequisite.authors}}
 
 {% for entry in site.data.about %}
 
