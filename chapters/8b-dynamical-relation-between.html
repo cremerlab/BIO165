@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>20&nbsp; The Dynamical Relation Between mRNA and Proteins – Quantitative Approaches in Modern Biology</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/8c-stochastic-processes.html" rel="next">
+<link href="../chapters/8a-differential-equation-modeling.html" rel="prev">
+<link href="../images/logo.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-55beddc79f2b70b4e9336f3af1a663d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">BIO 165 · Quantitative Biology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../chapters/1a-introduction.html" aria-current="page"> 
+<span class="menu-text">Lecture script</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../BIO165-lecture-script.pdf"> <i class="bi bi-file-earmark-pdf" role="img">
+</i> 
+<span class="menu-text">PDF</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/cremerlab/BIO165" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/8a-differential-equation-modeling.html">Week 8: Dynamical systems and stochastic processes</a></li><li class="breadcrumb-item"><a href="../chapters/8b-dynamical-relation-between.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">The Dynamical Relation Between mRNA and Proteins</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1: Introduction and getting started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1a-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1b-getting-python-notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Python and notebooks to Run</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1c-biological-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Biological data: Types and the Concept of Tidy Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2: Biological data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2a-biological-data-origin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Biological Data: Origin, Variability, and Rigor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2b-data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2c-datasets-this-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datasets in this course</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3: Fitting and regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3a-fitting-importance-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fitting and the importance of Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3b-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3c-non-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Non-linear regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 4: Probability and uncertainty</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4a-probabilistic-view-law.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A probabilistic view and the law of large numbers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4b-sampling-variability-standard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sampling variability and the standard error of the mean</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4c-bootstrapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bootstrapping</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 5: Hypothesis testing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5a-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5b-multiple-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple hypothesis testing</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 6: Counting statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/6a-counting-statistics-discrete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Counting Statistics and Discrete Biological Measurements</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 7: Omics and high-dimensional data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7a-omics-data-counting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Omics Data: From Counting to Cellular State</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7b-nonlinear-dimensionality-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear dimensionality reduction and UMAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7c-clustering-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Clustering Algorithms</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 8: Dynamical systems and stochastic processes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8a-differential-equation-modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Differential equation and the modeling of dynamical systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8b-dynamical-relation-between.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">The Dynamical Relation Between mRNA and Proteins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8c-stochastic-processes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Stochastic Processes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 9: Nonlinear dynamics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/9a-nonlinear-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Nonlinear Dynamics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#estimating-gene-expression-parameters-in-cells" id="toc-estimating-gene-expression-parameters-in-cells" class="nav-link active" data-scroll-target="#estimating-gene-expression-parameters-in-cells"><span class="header-section-number">20.1</span> Estimating Gene Expression Parameters in Cells</a></li>
+  <li><a href="#steady-state-expression-levels" id="toc-steady-state-expression-levels" class="nav-link" data-scroll-target="#steady-state-expression-levels"><span class="header-section-number">20.2</span> Steady-State Expression Levels</a></li>
+  <li><a href="#response-dynamics-and-timescales" id="toc-response-dynamics-and-timescales" class="nav-link" data-scroll-target="#response-dynamics-and-timescales"><span class="header-section-number">20.3</span> Response Dynamics and Timescales</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/8a-differential-equation-modeling.html">Week 8: Dynamical systems and stochastic processes</a></li><li class="breadcrumb-item"><a href="../chapters/8b-dynamical-relation-between.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">The Dynamical Relation Between mRNA and Proteins</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">The Dynamical Relation Between mRNA and Proteins</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>To demonstrate the power of differential equations, we now apply this framework to one of the most fundamental biological processes: the dynamical relationship between gene expression, mRNA, and protein levels. Understanding this relationship better is essential to interpretate transcriptomic and proteomic data.</p>
+<p>As a concrete example, consider the previously discussed steady growth of <em>E.&nbsp;coli</em> on glucose. Across genes and expression levels, protein abundances are strongly tied to mRNA abundance, as illustrated by the relationship between relative transcript and protein fractions derived from omics data (Fig.&nbsp;<a href="#fig-prot-mrna" class="quarto-xref"><span>20.1</span></a>). Importantly, the shown correlation represents only a static snapshot of a highly dynamic process. To understand how such correlation patterns arise and to move toward a dynamical description, we turn to the central dogma of molecular biology: <span class="math display">\[\text{DNA} \rightarrow \text{RNA} \rightarrow \text{protein}.\]</span></p>
+<div id="fig-prot-mrna" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-prot-mrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/mRNA-prot-ecoliglucose.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;20.1: Relationship between mRNA and protein abundance in E.&nbsp;coli. Hexbin plot showing relative protein abundance versus relative mRNA abundance across genes during steady growth. Color indicates the number of genes per bin. The overall correlation reflects the coupling between transcription and translation predicted by the central-dogma model. Deviations from the identity line (blue) arise from additional regulatory processes, including gene-specific translation efficiencies, differential protein stability, post-transcriptional regulation, and measurement noise."><img src="../figs/mRNA-prot-ecoliglucose.png" class="img-fluid figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prot-mrna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.1: <strong>Relationship between mRNA and protein abundance in <em>E.&nbsp;coli</em>.</strong> Hexbin plot showing relative protein abundance versus relative mRNA abundance across genes during steady growth. Color indicates the number of genes per bin. The overall correlation reflects the coupling between transcription and translation predicted by the central-dogma model. Deviations from the identity line (blue) arise from additional regulatory processes, including gene-specific translation efficiencies, differential protein stability, post-transcriptional regulation, and measurement noise.
+</figcaption>
+</figure>
+</div>
+<p>Rather than viewing this as a simple flow chart, we now setup a dynamical model of the central dogma. Consider a specific gene and let <span class="math inline">\(m(t)\)</span> denote the number of mRNA molecules and <span class="math inline">\(p(t)\)</span> the number of protein molecules in a cell for that specific gene. The fundamental processes of transcription, translation, and degradation can then be described by two coupled differential equations.</p>
+<p>We begin with mRNA dynamics. The change in mRNA abundance due to transcription and degradation is given by <span class="math display">\[\frac{dm}{dt} = G\kappa - \delta_{\mathrm{mRNA}}\, m.\]</span></p>
+<p>Here, <span class="math inline">\(G\)</span> denotes the copy number of the gene on the chromosome, and <span class="math inline">\(\kappa\)</span> is an effective transcription rate (mRNA per unit time) describing how rapidly RNA polymerases produce transcripts from this gene. The parameter <span class="math inline">\(\delta_{\mathrm{mRNA}}\)</span> is the mRNA degradation rate. The degradation term is proportional to <span class="math inline">\(m\)</span> because each individual mRNA molecule has a certain probability per unit time to be degraded. When more mRNA molecules are present, more degradation events occur per unit time.</p>
+<p>We can similarly describe the dynamics of protein molecules <span class="math inline">\(p\)</span>: <span class="math display">\[\frac{dp}{dt} = \gamma\, m - (\delta_p + \lambda)\, p.\]</span></p>
+<p>Here, <span class="math inline">\(\gamma\)</span> is the translation rate (proteins produced per mRNA per unit time), and <span class="math inline">\(\delta_p\)</span> is the protein degradation rate. In growing cell cultures, protein numbers are also reduced by cell division. This process, known as dilution, scales with the growth rate <span class="math inline">\(\lambda\)</span> and is often more important than active degradation in fast-growing cells.</p>
+<p>Together, these differential equations provide a simple model for the coupled dynamics of transcription and protein synthesis. Notice their hierarchical structure: protein dynamics depend on mRNA, while mRNA dynamics are independent of protein. This reflects the directionality of the central dogma. When we later consider gene regulation, this strict one-way dependence will be relaxed, giving rise to feedback loops and more complex dynamical behavior.</p>
+<section id="estimating-gene-expression-parameters-in-cells" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="estimating-gene-expression-parameters-in-cells"><span class="header-section-number">20.1</span> Estimating Gene Expression Parameters in Cells</h2>
+<p>As with every differential equation model, connecting the central-dogma model to real biology requires specifying realistic values for all model parameters. Importantly, these parameters are not abstract fitting constants, but correspond to measurable biological quantities, made possible by more than a century of methodological advances and elegant experiments in molecular biology. In the following we focus on <em>E. coli</em> numbers and specifically the gene lacZ, providing short order of magnitude estimations for each parameter.</p>
+<p><strong>Transcription rate <span class="math inline">\(\kappa\)</span>.</strong></p>
+<p>In <em>E.&nbsp;coli</em>, RNA polymerases operate with an elongation speed of approximately <span class="math inline">\(60~\mathrm{nt/s}\)</span> when synthesizing mRNA. The time required to complete a transcript therefore depends on gene length. For LacZ, for example, transcription takes about <span class="math display">\[\tau_{\mathrm{trs}} \approx 0.85~\mathrm{min}.\]</span> The maximal transcription rate is given by the inverse of this, <span class="math display">\[\kappa_{\max} \approx \frac{1}{\tau_{\mathrm{trs}}} \approx 70~\mathrm{h^{-1}}.\]</span></p>
+<p>In real cells, however, transcription rates are typically much lower. Initiation is limited by promoter strength and by the availability of RNA polymerase. As a very rough argument, consider that about <span class="math inline">\(1000\)</span> RNA polymerases are shared to transcribe roughly <span class="math inline">\(4000\)</span> genes. The effective transcription capacity per gene is therefore expected to be several-fold lower than <span class="math inline">\(\kappa_{\max}\)</span>. We therefore use in our estimation and effective value <span class="math display">\[\kappa \sim 17~\mathrm{h^{-1}}\]</span> as an order-of-magnitude estimate.</p>
+<p><strong>Gene copy number <span class="math inline">\(G\)</span>.</strong></p>
+<p>The factor <span class="math inline">\(G\)</span> accounts for gene copy number, which can exceed one in fast-growing cells due to multi-fork replication (cells maintain several copies of the chromosome which they replicate in parallel to make sure chromosome replication does not become a major bottleneck in growth). Here, we consider a single-copy situation only with <span class="math inline">\(G \approx 1\)</span>.</p>
+<p><strong>mRNA degradation rate <span class="math inline">\(\delta_{\mathrm{mRNA}}\)</span>.</strong></p>
+<p>Radiolabeling and transcriptional shutoff experiments have reported mRNA half-lives in <em>E.&nbsp;coli</em> of approximately <span class="math display">\[\tau_{1/2} \approx 5~\mathrm{min}.\]</span> For order-of-magnitude estimates, the degradation rate follows as a reciprocal of this timescale, <span class="math display">\[\delta_{\mathrm{mRNA}} \approx \frac{1}{\tau_{1/2}} \approx 12~\mathrm{h^{-1}}.\]</span></p>
+<p><strong>Translation rate <span class="math inline">\(\gamma\)</span>.</strong></p>
+<p>Ribosomes synthesize proteins at a rate of about <span class="math inline">\(20~\mathrm{AA/s}\)</span>. For LacZ, this corresponds to a time to synthesize the protein of roughly <span class="math display">\[\tau_{\mathrm{tsl}} \approx 1.3~\mathrm{min}.\]</span> The throughput of a single translating ribosome is therefore approximately <span class="math display">\[\gamma \approx \frac{1}{\tau_{\mathrm{tsl}}} \approx 46~\mathrm{h^{-1}}.\]</span></p>
+<p><strong>Protein degradation rate <span class="math inline">\(\delta_p\)</span>.</strong></p>
+<p>Most proteins in steadily growing <em>E.&nbsp;coli</em> are relatively stable and have long half-lives, often on the order of <span class="math display">\[\tau_{1/2,\mathrm{prot}} \approx 30~\mathrm{h}\]</span> or longer. The corresponding degradation rate is therefore small, <span class="math display">\[\delta_p \approx \frac{1}{\tau_{1/2,\mathrm{prot}}} \approx 0.03~\mathrm{h^{-1}}.\]</span></p>
+<p><strong>Growth rate <span class="math inline">\(\lambda\)</span> (dilution).</strong></p>
+<p>For growth on glucose, a typical doubling time is <span class="math display">\[T_d \approx 1~\mathrm{h}.\]</span> This corresponds to a growth rate of order <span class="math display">\[\lambda \approx \frac{1}{T_d} \approx 0.45~\mathrm{h^{-1}}.\]</span></p>
+<p>In this regime, dilution by growth dominates protein removal, <span class="math display">\[\lambda \gg \delta_p,\]</span> so active protein degradation can often be neglected to first order.</p>
+<div id="tbl-gene-expression-params" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gene-expression-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;20.1: <strong>Order-of-magnitude parameter estimates for fast-growing <em>E.&nbsp;coli</em>.</strong>
+</figcaption>
+<div aria-describedby="tbl-gene-expression-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Estimate (<span class="math inline">\(\mathrm{h^{-1}}\)</span>)</th>
+<th style="text-align: left;">How estimated</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: left;">growth rate (dilution)</td>
+<td style="text-align: left;"><span class="math inline">\(\sim 0.5\)</span></td>
+<td style="text-align: left;">doubling time <span class="math inline">\(T_d\approx 1~\mathrm{h}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\delta_{\mathrm{mRNA}}\)</span></td>
+<td style="text-align: left;">mRNA degradation</td>
+<td style="text-align: left;"><span class="math inline">\(\sim 12\)</span></td>
+<td style="text-align: left;">mRNA half-life <span class="math inline">\(t_{1/2}\approx 5~\mathrm{min}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\delta_p\)</span></td>
+<td style="text-align: left;">protein degradation</td>
+<td style="text-align: left;"><span class="math inline">\(\sim 0.03\)</span></td>
+<td style="text-align: left;">protein half-life <span class="math inline">\(t_{1/2}\approx 30~\mathrm{h}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\gamma\)</span></td>
+<td style="text-align: left;">translation (effective)</td>
+<td style="text-align: left;"><span class="math inline">\(\sim 46\)</span></td>
+<td style="text-align: left;">LacZ synthesis time <span class="math inline">\(t_{\mathrm{synth}}\approx 1.3~\mathrm{min}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\kappa_{\max}\)</span></td>
+<td style="text-align: left;">max transcription throughput</td>
+<td style="text-align: left;"><span class="math inline">\(\sim 70\)</span></td>
+<td style="text-align: left;">RNAP speed <span class="math inline">\(\sim 60~\mathrm{nt/s}\)</span>, LacZ length</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\kappa\)</span></td>
+<td style="text-align: left;">effective transcription rate</td>
+<td style="text-align: left;"><span class="math inline">\(\sim 17\)</span></td>
+<td style="text-align: left;">RNAP limitation + initiation efficiency</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(G\)</span></td>
+<td style="text-align: left;">gene copy number</td>
+<td style="text-align: left;"><span class="math inline">\(1\)</span> or larger</td>
+<td style="text-align: left;">replication state / locus position</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="steady-state-expression-levels" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="steady-state-expression-levels"><span class="header-section-number">20.2</span> Steady-State Expression Levels</h2>
+<p>With all parameters specified, we can now analyze how transcription, translation, and degradation determine protein abundance. We begin by considering steady-state conditions, in which production and removal are balanced for both mRNA and protein.</p>
+<p>Mathematically, steady state corresponds to <span class="math inline">\(dm/dt = dp/dt = 0\)</span>. Setting <span class="math inline">\(dm/dt = 0\)</span> gives <span class="math display">\[m^* = \frac{G\kappa}{\delta_{\mathrm{mRNA}}},\]</span> and setting <span class="math inline">\(dp/dt = 0\)</span> with <span class="math inline">\(m = m^*\)</span> yields <span class="math display">\[p^* = \frac{\gamma\, m^*}{\delta_p + \lambda}
+= \frac{\gamma\, G\kappa}{\delta_{\mathrm{mRNA}}(\delta_p + \lambda)}.\]</span></p>
+<p>This expression has a clear biological interpretation: under steady-state conditions, protein abundance is determined by total synthesis divided by total removal. Transcription, translation, degradation, and growth together set the mRNA and protein levels through these balances.</p>
+<p>Using the order-of-magnitude parameter values estimated above, we estimate for a steady state <span class="math display">\[m^* \sim 1 \quad \text{and} \quad p^* \sim 10^2,\]</span> Roughly one mRNA molecule and on the order of one hundred protein molecules per gene are present in a cell. While the exact values vary substantially across genes and conditions, the order of magnitudes have been confirmed in cells and highlight an important general feature of gene expression: mRNA copy numbers are often very small, whereas protein copy numbers are typically much larger.</p>
+<p>This separation of scales has important consequences. Low mRNA copy numbers make transcription intrinsically noisy, while higher protein copy numbers provide partial buffering and stability at the protein level. We will come back to this point when analyzing stochastic processes.</p>
+<p>Notably, for the steady growth of <em>E.&nbsp;coli</em> on glucose discussed earlier, many parameters in this expression, including <span class="math inline">\(\gamma\)</span>, <span class="math inline">\(\delta_{\mathrm{mRNA}}\)</span>, <span class="math inline">\(\delta_p\)</span>, and <span class="math inline">\(\lambda\)</span>, are approximately constant and shared across genes. In this regime, most gene-to-gene variation in protein abundance arises primarily from differences in transcriptional activity, encoded in <span class="math inline">\(G\kappa\)</span>. As a result, the model predicts the near-proportional relationship between mRNA and protein levels observed in the data (Fig.&nbsp;<a href="#fig-prot-mrna" class="quarto-xref"><span>20.1</span></a>, blue line). Deviations from this simple relationship indicate additional layers of regulation, such as gene-specific translation efficiencies, differential protein stability, or post-transcriptional control.</p>
+<p>Taken together, these steady-state relations define an important baseline or null model for gene expression. When most kinetic parameters are shared across genes, variation in protein abundance is dominated by transcriptional activity, and mRNA and protein levels are expected to scale proportionally. This provides a simple reference point against which more complex regulatory effects can be identified.</p>
+</section>
+<section id="response-dynamics-and-timescales" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="response-dynamics-and-timescales"><span class="header-section-number">20.3</span> Response Dynamics and Timescales</h2>
+<p>The same framework also naturally extends beyond steady-state conditions to describe how expression levels change in time. We here use the model to illustrate how mRNA and protein levels respond when gene expression is switched abruptly on or off at time <span class="math inline">\(t=0\)</span>. A numerical simulation of such a scenario is shown in Fig.&nbsp;<a href="#fig-centraldogma-onoff" class="quarto-xref"><span>20.2</span></a>.</p>
+<p>When transcription is activated, mRNA levels rise rapidly, followed more slowly by protein accumulation. Conversely, when transcription is shut off, mRNA decays quickly, while protein levels decline more gradually. These distinct responses reflect the different characteristic timescales of RNA and protein turnover. In many cells, mRNA half-lives are typically on the order of minutes or tens of minutes, whereas many proteins are removed primarily by dilution through growth. As a result, transcript levels track regulatory changes much more rapidly than protein levels, which integrate cellular history over longer times.</p>
+<p>These differential timescales are not merely a modeling detail, they impose fundamental physiological constraints. Because proteins accumulate and decay slowly, cells cannot instantaneously reconfigure their proteome in response to environmental change. This limitation helps explain phenomena such as apparent overcapacity in certain protein types and anticipatory synthesis of proteins before they are strictly required. In this way, simple dynamical considerations already provide insight into broader bacterial growth strategies and resource allocation principles.</p>
+<p>So far, we have considered deterministic and linear models of gene expression. In reality, regulatory feedback and molecular noise introduce nonlinearity and variability, leading to richer dynamical behaviors. These effects will be explored in the following lectures.</p>
+<div id="fig-centraldogma-onoff" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-centraldogma-onoff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/centraldogma_geneexpressiononset.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;20.2: Gene expression ON/OFF dynamics. Stepwise change in transcrption to on (A) or off (B) at t=0. Vertical dashed lines mark the switch time (t=0).Horizontal dashed and dotted lines indicate the pre-shift and post-shift steady states, respectively. The simulations highlight the separation of timescales: mRNA responds rapidly on the timescale 1/\delta_{\mathrm{mRNA}}, whereas protein changes more slowly on the effective removal timescale 1/(\delta_p+\lambda), often dominated by dilution in fast growth."><img src="../figs/centraldogma_geneexpressiononset.png" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-centraldogma-onoff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.2: <strong>Gene expression ON/OFF dynamics.</strong> Stepwise change in transcrption to on (A) or off (B) at <span class="math inline">\(t=0\)</span>. Vertical dashed lines mark the switch time (<span class="math inline">\(t=0\)</span>).Horizontal dashed and dotted lines indicate the pre-shift and post-shift steady states, respectively. The simulations highlight the separation of timescales: mRNA responds rapidly on the timescale <span class="math inline">\(1/\delta_{\mathrm{mRNA}}\)</span>, whereas protein changes more slowly on the effective removal timescale <span class="math inline">\(1/(\delta_p+\lambda)\)</span>, often dominated by dilution in fast growth.
+</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cremerlab\.github\.io\/BIO165");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/8a-differential-equation-modeling.html" class="pagination-link" aria-label="Differential equation and the modeling of dynamical systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Differential equation and the modeling of dynamical systems</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/8c-stochastic-processes.html" class="pagination-link" aria-label="Stochastic Processes">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Stochastic Processes</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>BIO 165/265 · Stanford University · <a href="https://cremerlab.github.io">Cremer Lab</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cremerlab/BIO165">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

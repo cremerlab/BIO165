@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; Hypothesis testing – Quantitative Approaches in Modern Biology</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/5b-multiple-hypothesis-testing.html" rel="next">
+<link href="../chapters/4c-bootstrapping.html" rel="prev">
+<link href="../images/logo.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-55beddc79f2b70b4e9336f3af1a663d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">BIO 165 · Quantitative Biology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../chapters/1a-introduction.html" aria-current="page"> 
+<span class="menu-text">Lecture script</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../BIO165-lecture-script.pdf"> <i class="bi bi-file-earmark-pdf" role="img">
+</i> 
+<span class="menu-text">PDF</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/cremerlab/BIO165" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/5a-hypothesis-testing.html">Week 5: Hypothesis testing</a></li><li class="breadcrumb-item"><a href="../chapters/5a-hypothesis-testing.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1: Introduction and getting started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1a-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1b-getting-python-notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Python and notebooks to Run</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1c-biological-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Biological data: Types and the Concept of Tidy Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2: Biological data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2a-biological-data-origin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Biological Data: Origin, Variability, and Rigor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2b-data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2c-datasets-this-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datasets in this course</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3: Fitting and regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3a-fitting-importance-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fitting and the importance of Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3b-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3c-non-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Non-linear regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 4: Probability and uncertainty</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4a-probabilistic-view-law.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A probabilistic view and the law of large numbers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4b-sampling-variability-standard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sampling variability and the standard error of the mean</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4c-bootstrapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bootstrapping</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 5: Hypothesis testing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5a-hypothesis-testing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5b-multiple-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple hypothesis testing</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 6: Counting statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/6a-counting-statistics-discrete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Counting Statistics and Discrete Biological Measurements</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 7: Omics and high-dimensional data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7a-omics-data-counting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Omics Data: From Counting to Cellular State</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7b-nonlinear-dimensionality-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear dimensionality reduction and UMAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7c-clustering-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Clustering Algorithms</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 8: Dynamical systems and stochastic processes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8a-differential-equation-modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Differential equation and the modeling of dynamical systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8b-dynamical-relation-between.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">The Dynamical Relation Between mRNA and Proteins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8c-stochastic-processes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Stochastic Processes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 9: Nonlinear dynamics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/9a-nonlinear-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Nonlinear Dynamics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#example-testing-whether-a-coin-is-fair" id="toc-example-testing-whether-a-coin-is-fair" class="nav-link active" data-scroll-target="#example-testing-whether-a-coin-is-fair"><span class="header-section-number">13.1</span> Example: testing whether a coin is fair</a></li>
+  <li><a href="#general-steps-of-hypothesis-testing" id="toc-general-steps-of-hypothesis-testing" class="nav-link" data-scroll-target="#general-steps-of-hypothesis-testing"><span class="header-section-number">13.2</span> General steps of hypothesis testing</a></li>
+  <li><a href="#from-coin-tosses-to-gene-expression-comparing-biological-conditions" id="toc-from-coin-tosses-to-gene-expression-comparing-biological-conditions" class="nav-link" data-scroll-target="#from-coin-tosses-to-gene-expression-comparing-biological-conditions"><span class="header-section-number">13.3</span> From coin tosses to gene expression: comparing biological conditions</a></li>
+  <li><a href="#permutation-tests-to-evaluate-differences" id="toc-permutation-tests-to-evaluate-differences" class="nav-link" data-scroll-target="#permutation-tests-to-evaluate-differences"><span class="header-section-number">13.4</span> Permutation tests to evaluate differences</a></li>
+  <li><a href="#relation-to-classical-parametric-tests" id="toc-relation-to-classical-parametric-tests" class="nav-link" data-scroll-target="#relation-to-classical-parametric-tests"><span class="header-section-number">13.5</span> Relation to classical parametric tests</a></li>
+  <li><a href="#practical-implementation-and-important-caveats" id="toc-practical-implementation-and-important-caveats" class="nav-link" data-scroll-target="#practical-implementation-and-important-caveats"><span class="header-section-number">13.6</span> Practical implementation and important caveats</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/5a-hypothesis-testing.html">Week 5: Hypothesis testing</a></li><li class="breadcrumb-item"><a href="../chapters/5a-hypothesis-testing.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the previous section, we focused on estimating uncertainty: how precisely can we determine a quantity given a finite sample size and noisy data? In many biological settings, however, we want to go further and ask whether observed data are consistent with a proposed explenation or hypothesis. <em>Hypothesis testing</em> provides a statistical framework for addressing this question.</p>
+<p>Crucially, hypothesis testing does not aim to directly assess whether a specific hypothesis is true, something that is generally very difficult, if not impossible, to establish conclusively. Instead, hypothesis testing evaluates whether the observed data are <em>consistent with a baseline explanation</em>, called the <em>null hypothesis</em>. If the data are highly inconsistent with the null hypothesis, this provides evidence against it and in favor of an alternative explanation.</p>
+<section id="example-testing-whether-a-coin-is-fair" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="example-testing-whether-a-coin-is-fair"><span class="header-section-number">13.1</span> Example: testing whether a coin is fair</h2>
+<p>To introduce the core idea, consider again the coin-toss example introduced earlier. Suppose we toss a coin <span class="math inline">\(n = 10\)</span> times and record heads as 1 and tails as 0. After performing the experiment, we compute the observed fraction of heads and obtain <span class="math inline">\(\bar X_n = 0.7\)</span> as shown in Fig.&nbsp;<a href="#fig-coin-null-pvalue" class="quarto-xref"><span>13.1</span></a>A. As this fraction deviates substantially from 0.5, we may wonder whether the coin is not fair. That is, the coin is biased, not producing heads and tails with equal probability.</p>
+<p>To evaluate this suspicion or hypothesis, we first formulate a null hypothesis: the coin is fair, with the probability of heads being <span class="math inline">\(p_{0} = 0.5\)</span>. Assuming this hypothesis is true, we can ask what outcomes we would expect from repeated coin tossing experiments with n=10 tosses each. Using a computer, we can simulate many independent series of 10 coin tosses under the assumption of a fair coin and record the resulting fractions of heads. The distribution of these simulated outcomes is shown in Fig.&nbsp;<a href="#fig-coin-null-pvalue" class="quarto-xref"><span>13.1</span></a>B.</p>
+<p>We can now evaluate our observation <span class="math inline">\((\bar X_n = 0.7)\)</span> relative to this reference distribution. Specifically, we ask: what fraction of simulated experiments would produce a result at least as extreme as the observed one? This fraction corresponds to the shaded region in Fig.&nbsp;<a href="#fig-coin-null-pvalue" class="quarto-xref"><span>13.1</span></a>B and is commonly called a <em>p-value</em>.</p>
+<p>For 10 tosses, observing a fraction of heads larger as 0.7 (or 0.3 or smaller) is highly likely (about 37%) and compatible with the sampling variability expected under the assumption of a fair coin. That is, the p-value is about 0.35. Accordingly, with this experiment alone we cannot conclude that the coin is unfair. In other words, the observation do not provide strong evidence against the null hypothesis.</p>
+<div id="fig-coin-null-pvalue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-null-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/cointoss_pvalue.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;13.1: Hypothesis testing to evaluate if a coin is not fair. (A) Outcomes of a single coin-toss experiment with n=10 tosses. Each vertical line represents one toss (heads = 1, tails = 0). The mean \bar X_n is the obtained fraction of heads. (B) Null distribution of the sample mean generated by Monte Carlo simulation under the null hypothesis of a fair coin (p_0 = 0.5). The vertical dashed line marks the null mean, and the solid line marks the observed mean. The shaded region corresponds to outcomes at least as extreme as the observation, defining the two-sided p-value. Dotted lines indicate \pm 1 SEM under the null hypothesis. (C,D) Same as in (A,B) but for n=100 tosses. In this case, the null distribution is much narrower, and the the observed deviation from 0.5 leads to a much smaller p-value."><img src="../figs/cointoss_pvalue.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-null-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: <strong>Hypothesis testing to evaluate if a coin is not fair.</strong> <strong>(A)</strong> Outcomes of a single coin-toss experiment with <span class="math inline">\(n=10\)</span> tosses. Each vertical line represents one toss (heads = 1, tails = 0). The mean <span class="math inline">\(\bar X_n\)</span> is the obtained fraction of heads. <strong>(B)</strong> <em>Null distribution</em> of the sample mean generated by Monte Carlo simulation under the null hypothesis of a fair coin (<span class="math inline">\(p_0 = 0.5\)</span>). The vertical dashed line marks the null mean, and the solid line marks the observed mean. The shaded region corresponds to outcomes at least as extreme as the observation, defining the two-sided p-value. Dotted lines indicate <span class="math inline">\(\pm 1\)</span> SEM under the null hypothesis. <strong>(C,D)</strong> Same as in (A,B) but for <span class="math inline">\(n=100\)</span> tosses. In this case, the null distribution is much narrower, and the the observed deviation from 0.5 leads to a much smaller p-value.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="general-steps-of-hypothesis-testing" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="general-steps-of-hypothesis-testing"><span class="header-section-number">13.2</span> General steps of hypothesis testing</h2>
+<p>The coin-toss example already contains all essential ingredients of a hypothesis test. We now explicitly state the steps involved.</p>
+<ul>
+<li><p>First, we need to formulate a <em>null hypothesis</em>. The null hypothesis represents a baseline explanation for the data. In the coin-toss example, the null hypothesis was that the coin is fair, meaning that the probability of heads is <span class="math inline">\(p_0 = 0.5\)</span>.</p></li>
+<li><p>Second, we define a <em>test statistic</em> that summarizes the observed data in a single number. In the coin-toss experiment, a natural test statistic is the sample mean <span class="math display">\[\bar X_n = \frac{1}{n} \sum_{i=1}^n X_i,\]</span> which corresponds to the observed fraction of heads.</p></li>
+<li><p>Third, we construct a reference distribution for this test statistic under the null hypothesis. This distribution describes the variability we would expect if the null hypothesis were true and the experiment were repeated under identical conditions. In the coin-toss example, the reference distribution was obtained by repeatedly simulating coin-toss experiments under the assumption of a fair coin.</p></li>
+<li><p>Finally, we compute a <em>p-value</em>. The p-value is defined as the probability of observing a test statistic at least as extreme as the one measured, assuming that the null hypothesis is true. In the coin-toss example, the p-value corresponds to the shaded area in Fig.&nbsp;<a href="#fig-coin-null-pvalue" class="quarto-xref"><span>13.1</span></a>B, representing outcomes with a deviation from <span class="math inline">\(p_0\)</span> that is equal to or larger than the observed deviation.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info: One-sided and two-sided p-values
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hypothesis tests can be either one-sided or two-sided, depending on the scientific question.</p>
+<p><strong>One-sided test:</strong> A one-sided test considers deviations in only one direction (either larger or smaller than expected under the null hypothesis). The p-value is the probability of observing a test statistic at least as extreme as the observed one in that specified direction.</p>
+<p>Example: Testing whether a drug <em>increases</em> growth rate.</p>
+<p><strong>Two-sided test:</strong> A two-sided test considers deviations in both directions (larger <em>or</em> smaller than expected). The p-value is the probability of observing a test statistic at least as extreme as the observed one in either direction.</p>
+<p>Example: Testing whether a drug <em>changes</em> growth rate (increase or decrease).</p>
+<p><strong>When to use which:</strong></p>
+<ul>
+<li><p>Use a one-sided test only when deviations in the opposite direction are scientifically irrelevant.</p></li>
+<li><p>Use a two-sided test when both increases and decreases are meaningful.</p></li>
+<li><p>In most biological applications, two-sided tests are preferred by default.</p></li>
+</ul>
+</div>
+</div>
+<p>Importantly, the p-value is <em>not</em> the probability that the null hypothesis is true. Rather, it quantifies how compatible the observed data are with the null hypothesis. Small p-values indicate that the observation would be unlikely if the null hypothesis were correct, providing evidence against it.</p>
+<p>Furthermore, large p-values do not establish the null hypothesis. A p-value may for example be large simply because the sample size is too small to exclude the null hypothesis. This is illustrated by the coin-toss example. As shown in Fig.&nbsp;<a href="#fig-coin-null-pvalue" class="quarto-xref"><span>13.1</span></a>C and D, increasing the number of observations to <span class="math inline">\(n=100\)</span> narrows the reference distribution and leads to a much smaller p-value, making it unlikely that the coin is fair. In our example, to generate the observations we actually assumed a slightly biased coin with a probability of 0.6 for heads. The p-value was initially large only because of the small sample size.</p>
+</section>
+<section id="from-coin-tosses-to-gene-expression-comparing-biological-conditions" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="from-coin-tosses-to-gene-expression-comparing-biological-conditions"><span class="header-section-number">13.3</span> From coin tosses to gene expression: comparing biological conditions</h2>
+<p>The coin-toss example is unusually simple because the null hypothesis specifies a complete probabilistic model. We know exactly how data should behave under the assumption of a fair coin, and we can generate the corresponding reference distribution directly.</p>
+<p>In biology, we most often do not know underlying probabilistic models and hypothesis testing is commonly used in a different setting. Rather than asking whether data match a fully specified probability model, we typically compare measurements across experimental conditions and ask whether observations are signficiantly different.</p>
+<p>A canonical example is gene expression analysis. Suppose we measure the expression level of a gene across multiple biological replicates in two conditions, for example untreated cells and cells exposed to a drug. Each condition yields a set of expression measurements, and we observe that the average expression differs between groups (Fig.&nbsp;<a href="#fig-permutation-gene-expression" class="quarto-xref"><span>13.2</span></a>A).</p>
+<div id="fig-permutation-gene-expression" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-permutation-gene-expression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/permutationtest_example_geneexpression.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;13.2: Permutation test example: Probing for differences in gene expression. (A) Expression measurements of a single gene across two experimental conditions (e.g.&nbsp;control and treatment), with each point representing one biological replicate. The observed difference in mean expression between conditions defines the test statistic T_{\mathrm{obs}} = \bar{x}_{\mathrm{trt}} - \bar{x}_{\mathrm{ctrl}}. (B) Illustration of how permutation samples are generated under the null hypothesis for a simplied example with 6 measurement points only. The numerical values correspond to the same observed measurements shown in (A). Colors indicate the original group membership, while their reassignment into control and treatment groups is shuffled. Each column shows one possible reassignment of labels consistent with the null hypothesis that group labels are interchangeable. For each reassignment, the test statistic T is recomputed. (C) Null distribution of the test statistic obtained by systematically drawing many such permutations of the labels while keeping the observed values fixed (this includes again all observed datapoints shown in A). The vertical line marks the observed test statistic T_{\mathrm{obs}}. The shaded region indicates permutation outcomes at least as extreme as the observed value and defines the two-sided p-value."><img src="../figs/permutationtest_example_geneexpression.png" class="img-fluid figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-permutation-gene-expression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.2: <strong>Permutation test example: Probing for differences in gene expression.</strong> <strong>(A)</strong> Expression measurements of a single gene across two experimental conditions (e.g.&nbsp;control and treatment), with each point representing one biological replicate. The observed difference in mean expression between conditions defines the test statistic <span class="math inline">\(T_{\mathrm{obs}} = \bar{x}_{\mathrm{trt}} - \bar{x}_{\mathrm{ctrl}}\)</span>. <strong>(B)</strong> Illustration of how permutation samples are generated under the null hypothesis for a simplied example with 6 measurement points only. The numerical values correspond to the same observed measurements shown in (A). Colors indicate the <em>original</em> group membership, while their reassignment into control and treatment groups is shuffled. Each column shows one possible reassignment of labels consistent with the null hypothesis that group labels are interchangeable. For each reassignment, the test statistic <span class="math inline">\(T\)</span> is recomputed. <strong>(C)</strong> Null distribution of the test statistic obtained by systematically drawing many such permutations of the labels while keeping the observed values fixed (this includes again all observed datapoints shown in A). The vertical line marks the observed test statistic <span class="math inline">\(T_{\mathrm{obs}}\)</span>. The shaded region indicates permutation outcomes at least as extreme as the observed value and defines the two-sided p-value.
+</figcaption>
+</figure>
+</div>
+<p>At this stage, two distinct questions arise:</p>
+<ol type="1">
+<li><p>How large is the observed difference?</p></li>
+<li><p>Is the difference signficiant or could a difference of this size plausibly arise if the drug had no effect?</p></li>
+</ol>
+<p>The first question concerns effect size and uncertainty, which we can quantify using e.g.&nbsp;SEMs or bootstrapping. The second question requires a hypothesis test.</p>
+<p>The null hypothesis in this setting is: <strong>Expression measurements in the two conditions are drawn from the same underlying distribution.</strong></p>
+</section>
+<section id="permutation-tests-to-evaluate-differences" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="permutation-tests-to-evaluate-differences"><span class="header-section-number">13.4</span> Permutation tests to evaluate differences</h2>
+<p>Importantly, this null hypothesis does not specify a particular probabilistic model or probability distribution for expression values. Instead, it states that the experimental condition does not influence expression. If this is true, then the labels “control” and “treatment” are arbitrary and carry no information. In other words, under the null-hypothesis, the assignment of measurements to conditions is interchangeable. But if that is true, then randomly reassigning condition labels should not systematically change the observed difference in expression. To evaluate the null-hypothesis we thus run a <strong>permutation test</strong>. That is, we randomly assign measurements to different conditions and examine the consequences for a statistic of interest. Specifically, to perform a permutation test, we proceed as follows:</p>
+<ol type="1">
+<li><p>Compute the observed test statistic of interest, for example the difference in mean expression between conditions.</p></li>
+<li><p>Randomly assign the measured expression levels to the condition labels. Figure&nbsp;<a href="#fig-permutation-gene-expression" class="quarto-xref"><span>13.2</span></a>B shows, as simplified example, a few permutations for 6 datapoints only.</p></li>
+<li><p>Recompute the test statistic for the shuffled data.</p></li>
+<li><p>Repeat this procedure many times to generate a reference distribution under the null hypothesis.</p></li>
+<li><p>Compare the observed test statistic to this distribution to obtain a p-value.</p></li>
+</ol>
+<p>For the data in Figure&nbsp;<a href="#fig-permutation-gene-expression" class="quarto-xref"><span>13.2</span></a>A the result of the permutation test is shown in Figure&nbsp;<a href="#fig-permutation-gene-expression" class="quarto-xref"><span>13.2</span></a>C. Technically, it shows the null distribution obtained by permuting condition labels many times. The blue shaded region indicates permutation outcomes at least as extreme as the observed difference and defines the p-value. For this example, the resulting p-value is 0.018, meaning that under the typical threshold of 0.05 we do consider the gene expression levels to be significantly different.</p>
+</section>
+<section id="relation-to-classical-parametric-tests" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="relation-to-classical-parametric-tests"><span class="header-section-number">13.5</span> Relation to classical parametric tests</h2>
+<p>Notably, permutation tests like the one shown construct the null distribution directly from the data. Permutation tests therefore provide a powerful and general framework for hypothesis testing in biological data, especially when analytical distributions are unknown or unreliable. Historically, however, parametric tests, most commonly the t-test, have been widely used in biological data analysis. These tests are elegant and powerful when their assumptions are satisfied, but they rely on key assumptions such as independent observations, approximately normally distributed noise, and similar variances between groups.</p>
+<p>Biological data frequently violate these assumptions, in which case parametric p-values can become misleading. In many biological settings, permutation tests are therefore preferable, as they make fewer assumptions and rely directly on the structure of the observed data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info: The t-test: historical context and modern perspective
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The t-test is one of the most widely used statistical tests in the life sciences and has been a cornerstone of data analysis for more than a century. It was introduced by William Sealy Gosset in 1908, working under the pseudonym Student, to address inference from small-sample experiments when the population variance is unknown.</p>
+<p>At the time, computation was done by hand and analytical solutions were essential. The t-test provided a simple, closed-form way to assess whether two group means differ more than expected from sampling variability alone. For much of the 20th century, it became the default tool for hypothesis testing in biology, medicine, and the social sciences.</p>
+<p>From a modern perspective, the t-test can be understood as a special case of a more general idea: it approximates the sampling distribution of a difference in means under the assumptions of independent observations, approximately Gaussian noise, and similar variances between groups. When these assumptions hold, the t-test is powerful.</p>
+<p>However, it is now feasible with modern computers to construct null distributions directly from the data using permutation tests. Permutation tests require fewer assumptions, make the null hypothesis explicit, and work naturally for arbitrary test statistics and small sample sizes. Thus, while the t-test remains useful and interpretable under its assumptions, permutation tests provide a more general and transparent framework for hypothesis testing in contemporary biological research.</p>
+</div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Feature</strong></th>
+<th style="text-align: left;"><strong>t-test</strong></th>
+<th style="text-align: left;"><strong>Permutation test</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Distribution assumptions</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Small sample sizes</td>
+<td style="text-align: left;">Risky</td>
+<td style="text-align: left;">Robust</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Arbitrary test statistics</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="practical-implementation-and-important-caveats" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="practical-implementation-and-important-caveats"><span class="header-section-number">13.6</span> Practical implementation and important caveats</h2>
+<p>With modern computational tools, permutation tests are straightforward to implement. We show how this is done in Python in Problem Set&nbsp;5. However, it is important to recognize that hypothesis testing and p-values come with important limitations and potential pitfalls.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info: Common pitfalls when interpreting p-values
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>A p-value is not the probability that the null hypothesis is true.</strong> It is the probability of observing data at least as extreme as those measured, assuming the null hypothesis is true.</p></li>
+<li><p><strong>A small p-value does not measure effect size or biological relevance.</strong> Statistical significance does not imply biological importance.</p></li>
+<li><p><strong>Significance thresholds are arbitrary.</strong> Common cutoffs such as <span class="math inline">\(p&lt;0.05\)</span> are conventions, not fundamental scientific boundaries.</p></li>
+<li><p><strong>P-values alone do not establish biological hypotheses.</strong> Robust conclusions require independent validation, additional data, and complementary experiments. Hypothesis testing does not replace the need for clever experimental design and rigerous research.</p></li>
+<li><p><strong>Multiple hypothesis testing must be accounted for.</strong> When many tests are performed, false positives accumulate unless appropriate corrections are applied.</p></li>
+</ul>
+</div>
+</div>
+<p>We discuss multiple hypothesis testing and correction methods in detail in the next section.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cremerlab\.github\.io\/BIO165");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/4c-bootstrapping.html" class="pagination-link" aria-label="Bootstrapping">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bootstrapping</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/5b-multiple-hypothesis-testing.html" class="pagination-link" aria-label="Multiple hypothesis testing">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple hypothesis testing</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>BIO 165/265 · Stanford University · <a href="https://cremerlab.github.io">Cremer Lab</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cremerlab/BIO165">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

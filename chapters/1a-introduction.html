@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Introduction – Quantitative Approaches in Modern Biology</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/1b-getting-python-notebooks.html" rel="next">
+<link href="../index.html" rel="prev">
+<link href="../images/logo.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-55beddc79f2b70b4e9336f3af1a663d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">BIO 165 · Quantitative Biology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../chapters/1a-introduction.html" aria-current="page"> 
+<span class="menu-text">Lecture script</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../BIO165-lecture-script.pdf"> <i class="bi bi-file-earmark-pdf" role="img">
+</i> 
+<span class="menu-text">PDF</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/cremerlab/BIO165" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/1a-introduction.html">Week 1: Introduction and getting started</a></li><li class="breadcrumb-item"><a href="../chapters/1a-introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 1: Introduction and getting started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1a-introduction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1b-getting-python-notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Python and notebooks to Run</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1c-biological-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Biological data: Types and the Concept of Tidy Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2: Biological data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2a-biological-data-origin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Biological Data: Origin, Variability, and Rigor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2b-data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2c-datasets-this-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datasets in this course</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3: Fitting and regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3a-fitting-importance-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fitting and the importance of Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3b-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3c-non-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Non-linear regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 4: Probability and uncertainty</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4a-probabilistic-view-law.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A probabilistic view and the law of large numbers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4b-sampling-variability-standard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sampling variability and the standard error of the mean</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4c-bootstrapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bootstrapping</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 5: Hypothesis testing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5a-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5b-multiple-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple hypothesis testing</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 6: Counting statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/6a-counting-statistics-discrete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Counting Statistics and Discrete Biological Measurements</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 7: Omics and high-dimensional data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7a-omics-data-counting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Omics Data: From Counting to Cellular State</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7b-nonlinear-dimensionality-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear dimensionality reduction and UMAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7c-clustering-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Clustering Algorithms</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 8: Dynamical systems and stochastic processes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8a-differential-equation-modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Differential equation and the modeling of dynamical systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8b-dynamical-relation-between.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">The Dynamical Relation Between mRNA and Proteins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8c-stochastic-processes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Stochastic Processes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 9: Nonlinear dynamics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/9a-nonlinear-dynamics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Nonlinear Dynamics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#sec-1atriangle" id="toc-sec-1atriangle" class="nav-link active" data-scroll-target="#sec-1atriangle"><span class="header-section-number">1.1</span> The triangle of quantitative reasoning in modern biology</a></li>
+  <li><a href="#sec-quant-examples" id="toc-sec-quant-examples" class="nav-link" data-scroll-target="#sec-quant-examples"><span class="header-section-number">1.2</span> Biological breakthroughs through quantitative reasoning</a></li>
+  <li><a href="#this-course-dry-labs-to-learn-quantitative-analysis-and-a-note-for-beginners" id="toc-this-course-dry-labs-to-learn-quantitative-analysis-and-a-note-for-beginners" class="nav-link" data-scroll-target="#this-course-dry-labs-to-learn-quantitative-analysis-and-a-note-for-beginners"><span class="header-section-number">1.3</span> This course, dry labs to learn quantitative analysis and a note for beginners</a></li>
+  <li><a href="#use-of-ai-tools" id="toc-use-of-ai-tools" class="nav-link" data-scroll-target="#use-of-ai-tools"><span class="header-section-number">1.4</span> Use of AI tools</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/1a-introduction.html">Week 1: Introduction and getting started</a></li><li class="breadcrumb-item"><a href="../chapters/1a-introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-intro" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-1atriangle" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-1atriangle"><span class="header-section-number">1.1</span> The triangle of quantitative reasoning in modern biology</h2>
+<p>At its core, (modern) biology is also a quantitative data science. Advances in experimental methods to collect data, a detailed attention to numbers, and a broad range of clever quantitative approaches have promoted major breakthroughs in all fields of biology since more than hundred years. Over time the trend to quantification accelerated. Modern experimental methods, including sequencing, imaging, metabolomics, proteomics, CRISPR screens, and single-cell technologies promote unprecedented insights into the function of cells, organisms, and ecosystems, through massive datasets which need to be analyzed. Methods to collect and analyze data develop in a breathtaking speed. As a result, modern biology requires a some fundamental understanding of data handling and quantitative analysis.</p>
+<p>Seen as quantitative data science, reasoning in biology consists of three fundamental and interconnected steps.</p>
+<ol type="1">
+<li><p>Data generation and handling: How biological data is generated, organized, stored, cleaned, and structured.</p></li>
+<li><p>Modeling &amp; Fitting: How quantitative relationships summarize patterns and reveal biological principles.</p></li>
+<li><p>Evaluation &amp; Testing: How we judge models, quantify uncertainty, and test hypotheses</p></li>
+</ol>
+<p>We call this here the triangle of quantitative reasoning, illustrated in Figure&nbsp;<a href="#fig-workflow" class="quarto-xref"><span>1.1</span></a>. Across this triangle runs a natural workflow loop. Visualization connects data to models by revealing structure and patterns. Uncertainty analyses connects models to evaluation by quantifying variability and confidence. And findings from the evaluation and testing informs new data generation and thus new analyses.</p>
+<div id="fig-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/quantitative_reasoning.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1.1: The quantitative reasoning in biology. Quantitative analyses consist of essential steps which are commonly performed repreatedly to generate better biological understanding."><img src="../figs/quantitative_reasoning.png" class="img-fluid figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: <strong>The quantitative reasoning in biology.</strong> Quantitative analyses consist of essential steps which are commonly performed repreatedly to generate better biological understanding.
+</figcaption>
+</figure>
+</div>
+<p>Performing these steps efficiently and rigorously in a biological research project requires, besides a deep knowledge of the biological system one studies, an applicable knowledge in mathematics, statistics, and coding.</p>
+<p>In this course, we introduce fundamentals of quantitative data analysis in modern biology. Starting with the basics of data handling, we will go through the triangle of quantitative reasoning, adding new analysis steps each week and applying those to real datasets through lectures and “dry labs”.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info: Popper revisited
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The triangle of quantitative reasoning can be viewed as a modern, data-driven implementation of classical scientific reasoning as articulated by Karl Popper. In Popper’s framework, science advances through the formulation of hypotheses, the derivation of predictions, and attempts at falsification through experiment. Through the lens of data science, these statements can be made more rigorous. Hypotheses are encoded as mathematical or statistical models, predictions are expressed as quantitative expectations, and falsification is replaced by model evaluation, uncertainty quantification, and comparison across datasets. Rather than binary rejection, evidence accumulates continuously, and models are refined or replaced as new data become available.</p>
+</div>
+</div>
+</section>
+<section id="sec-quant-examples" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-quant-examples"><span class="header-section-number">1.2</span> Biological breakthroughs through quantitative reasoning</h2>
+<p>To start, let us step back and clarify why quantitative reasoning is so powerful and has become indispensable in modern biology.</p>
+<p>Given the breathtaking progress in all areas of biology over the last century there are almost countless landmark discoveries that were possible only because of some quantitative reasoning, often as an elegant combination of careful experiments, mathematical models, and statistical analysis.</p>
+<p>We here introduce three classical examples which changed neuroscience, biochemistry, and evolutionary biology.</p>
+<ol type="1">
+<li><p><strong>Hodgkin–Huxley and the foundation of neural signaling:</strong> The work of Alan Hodgkin and Andrew Huxley began with precise voltage-clamp measurements of membrane currents in the squid giant axon. Using these data together with electrical circuit theory, they constructed a quantitative mathematical model in which voltage- and time-dependent sodium and potassium conductances determine membrane dynamics (Fig.&nbsp;<a href="#fig-huxley" class="quarto-xref"><span>1.2</span></a>A).</p>
+<p>Notably, the kinetic and biophysical parameters of the model were constrained by voltage-clamp experiments and other independent measurements, rather than freely adjusted to reproduce action potentials. The model was then evaluated by showing that it could reproduce the timing, amplitude, and overall shape of experimentally observed action potentials (Fig.&nbsp;<a href="#fig-huxley" class="quarto-xref"><span>1.2</span></a>B,C).</p>
+<p>By linking ion-channel kinetics to electrical signaling, this work established a mechanistic framework for neural excitability. The Hodgkin–Huxley model became the foundation of modern conductance-based modeling approaches in neurobiology, far beyond the original experimental system, from single-neuron models to large-scale simulations of neural circuits.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Quantitative takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quantitative analysis was essential to show how the collective behavior of many ion channels gives rise to predictable neural signals. This mechanistic link between microscopic kinetics and macroscopic electrical behavior could not be established from qualitative observations alone.</p>
+</div>
+</div>
+<div id="fig-huxley" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-huxley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/Huxley-Hodgkin.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1.2: Hodgkin–Huxley and the foundation of neural signaling. (A) Schematic of the Hodgkin–Huxley modeling framework, in which membrane voltage dynamics are described using an equivalent electrical circuit. Voltage- and time-dependent sodium and potassium conductances represent the collective behavior of ion channels. (B) Action potential predicted by the Hodgkin–Huxley model using parameters determined independently from voltage-clamp experiments and biophysical measurements. (C) Experimentally measured action potential from the squid giant axon. Model predictions and experimental data adapted from Hodgkin and Huxley (1952). The correspondence between prediction and experiment illustrates how quantitatively constrained models can link ion-channel kinetics to emergent electrical behavior."><img src="../figs/Huxley-Hodgkin.png" class="img-fluid figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-huxley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: <strong>Hodgkin–Huxley and the foundation of neural signaling.</strong> (A) Schematic of the Hodgkin–Huxley modeling framework, in which membrane voltage dynamics are described using an equivalent electrical circuit. Voltage- and time-dependent sodium and potassium conductances represent the collective behavior of ion channels. (B) Action potential predicted by the Hodgkin–Huxley model using parameters determined independently from voltage-clamp experiments and biophysical measurements. (C) Experimentally measured action potential from the squid giant axon. Model predictions and experimental data adapted from Hodgkin and Huxley (1952). The correspondence between prediction and experiment illustrates how quantitatively constrained models can link ion-channel kinetics to emergent electrical behavior.
+</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Michaelis–Menten kinetics and the quantitative description of enzymatic catalysis:</strong> Leonor Michaelis and Maud Menten investigated how enzymatic reaction rates depend on substrate concentration by systematically measuring reaction velocities across a wide range of substrate levels. They observed a characteristic saturating relationship that could not be explained by linear reasoning alone. To account for this behavior, they introduced a simple kinetic model based on enzyme–substrate binding and catalytic turnover, yielding a nonlinear rate law characterized by two parameters: the maximum reaction rate <span class="math inline">\(V_{\max}\)</span> and the Michaelis constant <span class="math inline">\(K_m\)</span> (Fig.&nbsp;<a href="#fig-mm" class="quarto-xref"><span>1.3</span></a>).</p>
+<p>The model was quantitatively evaluated by testing whether it reproduced measured rate–concentration curves. The introduction of <span class="math inline">\(V_{\max}\)</span> represented an important conceptual advance: it formalized the idea that enzymatic reactions are limited by a finite catalytic capacity. This insight later enabled a molecular interpretation of saturation in terms of an intrinsic turnover rate multiplied by enzyme abundance, <span class="math inline">\(V_{\max}=k_{\text{cat}}[E]\)</span>, linking macroscopic rate measurements to underlying molecular processes.</p>
+<p>This framework became foundational in molecular biology, well beyond the original invertase experiments. A prominent later example is the <span class="math inline">\(\beta\)</span>-galactosidase assay used in bacterial gene regulation, which enabled precise and reproducible measurements of enzymatic activity across conditions (Fig.&nbsp;<a href="#fig-mm" class="quarto-xref"><span>1.3</span></a>). Such quantitative assays made it possible to disentangle enzyme concentration from catalytic efficiency and helped establish how gene expression and metabolism can be described using predictive quantitative models. The same mathematical structure reappeared in microbial physiology, most notably in Monod’s description of how cellular growth rates saturate with nutrient availability, highlighting the broad applicability of the Michaelis–Menten framework across biological scales.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Quantitative takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quantitative modeling of nonlinear rate–concentration data revealed enzymatic saturation and enabled the extraction of meaningful kinetic parameters. Concepts such as <span class="math inline">\(V_{\max}\)</span>, <span class="math inline">\(K_m\)</span>, and ultimately <span class="math inline">\(k_{\text{cat}}\)</span> emerged through the quantitative analysis.</p>
+</div>
+</div>
+<div id="fig-mm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/Michaelis_Menten_example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;1.3: Michaelis–Menten kinetics as a quantitative framework for enzymatic catalysis. (A) Original measurements by Michaelis and Menten showing reaction velocity as a function of substrate concentration for the enzyme invertase, revealing a saturating nonlinear relationship. (B) Later measurements of \beta-galactosidase activity using the chromogenic substrate ONPG, illustrating the same characteristic saturation behavior in a widely adopted quantitative assay. In both cases, the Michaelis–Menten model captures the observed rate–concentration curves using two parameters, V_{\max} and K_m, providing a mechanistic interpretation of enzymatic saturation. These quantitative assays laid the foundation for modern enzymology and for subsequent quantitative studies of gene regulation and metabolism."><img src="../figs/Michaelis_Menten_example.png" class="img-fluid figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: <strong>Michaelis–Menten kinetics as a quantitative framework for enzymatic catalysis.</strong> (A) Original measurements by Michaelis and Menten showing reaction velocity as a function of substrate concentration for the enzyme invertase, revealing a saturating nonlinear relationship. (B) Later measurements of <span class="math inline">\(\beta\)</span>-galactosidase activity using the chromogenic substrate ONPG, illustrating the same characteristic saturation behavior in a widely adopted quantitative assay. In both cases, the Michaelis–Menten model captures the observed rate–concentration curves using two parameters, <span class="math inline">\(V_{\max}\)</span> and <span class="math inline">\(K_m\)</span>, providing a mechanistic interpretation of enzymatic saturation. These quantitative assays laid the foundation for modern enzymology and for subsequent quantitative studies of gene regulation and metabolism.
+</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Luria–Delbrück and the quantitative foundations of molecular evolution:</strong> The work of Salvador Luria and Max Delbrück provided a quantitative resolution to a central question in evolutionary biology: whether genetic changes arise randomly or are induced by environmental challenge. Using carefully designed experiments, they measured the number of resistant bacterial colonies across many parallel cultures grown under identical phage encountering conditions. They observed extreme fluctuations in colony counts between cultures. This pattern is incompatible with mutations arising only in response to phage exposure and thus supports randomly occurring mutations. We will discuss the quantitative analysis in more detail in week 6 of this course when discussing probability and statistics. The work shape our understanding of evolution and continues to underpin modern studies of molecular evolution, population dynamics, and lineage tracing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Quantitative takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quantitative analysis of population-to-population variability was essential to distinguish random mutation from environmentally induced change—an inference that could not be drawn from qualitative observations or single experiments.</p>
+</div>
+</div></li>
+</ol>
+<p><strong>Modern biology</strong>: Quantitative analysis plays an equally central role in modern experimental biology. As experimental techniques now generate data at unprecedented scale and complexity, systematic quantitative analysis is essential for extracting meaningful biological insight. Consider, for example, the many modern biological approaches that can be understood as high-dimensional extensions of the classical examples discussed above. In neuroscience, large-scale recording and connectomics aim to link neural structure and activity to function across entire circuits, extending the Hodgkin–Huxley logic from single neurons to networks of thousands or millions of cells. In metabolism, omics technologies such as proteomics and metabolomics provide global measurements of enzyme abundances and metabolite concentrations, which are increasingly interpreted through quantitative frameworks such as metabolic and resource-allocation models that build directly on Michaelis–Menten kinetics. In evolutionary biology, lineage barcoding and sequencing-based tracking experiments allow researchers to follow the fate of thousands of lineages in parallel, bringing the probabilistic logic of the Luria–Delbrück experiment into a genomic, time-resolved setting.</p>
+<p>Across these domains, experimental advances require quantitative analysis to identify structure in high-dimensional data, evaluate competing models, and extract meaningful biological insight.</p>
+</section>
+<section id="this-course-dry-labs-to-learn-quantitative-analysis-and-a-note-for-beginners" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="this-course-dry-labs-to-learn-quantitative-analysis-and-a-note-for-beginners"><span class="header-section-number">1.3</span> This course, dry labs to learn quantitative analysis and a note for beginners</h2>
+<p>Before we start we want to emphasize important aspects of this course.</p>
+<p><strong>Scope and limitation of this course</strong>: In this class, we will only consider a small part of the remarkable breath of quantitative methods, focusing on the most essential and those important for modern omics analyses. Second, we will focus on the conceptual logic of analysis steps and their realization in Python and hands on computational notebooks, not mathematical proofs or rigor. The goal is a applicable understanding of essential steps, to utilize in research projects and to promote further studies of quantitative methods.</p>
+<p><strong>Dry labs:</strong> To learn quantitative analysis, we believe it is essential to apply concepts immediately to real datasets. In this course, we realize this hands-on approach through “dry labs” as problem sets. Each dry lab is built around a (Python based) computational notebook, an interactive document that combines narrative text, executable code, and visual or numerical output in a single workflow. Using this format, we introduce new analysis concepts, apply them directly to data, and interpret the results in context.</p>
+<p><strong>Different quantitative backgrounds</strong>: Students in this course arrive with a wide range of backgrounds in coding, mathematics, statistics, and biology. Some topics may feel familiar, while others may be entirely new. The dry labs and accompanying scripts are structured to support students with less prior experience by building foundational skills step by step. Students with more advanced backgrounds can revisit core ideas and deepen their understanding by analyzing datasets of their choice or engaging with optional problem sets.</p>
+<p>For those of you who are new to coding or to many of the mathematical and statistical concepts introduced in this course, we want to emphasize that getting started is more feasible than ever before. Modern programming tools, extensive documentation, and AI have substantially lowered the barrier to entry. At the same time, becoming comfortable with quantitative analysis still involves a learning curve and can feel challenging at first. It takes time to get used to the analysis workflow, become familiar with available tools, and develop a conceptual understanding of the essential analysis steps. To overcome this hurdle and make coding and quantitative analysis a routine part of your scientific workflow, we strongly encourage you to work collaboratively and learn together. We are also here to help.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info: Tutorials and office hours
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To support students at all levels, the course offers optional introductory sessions during the first two Thursdays, an optional Thursday afternoon support session each week, and additional office hours throughout the quarter. We strongly encourage you to take advantage of these resources as you navigate the course.</p>
+</div>
+</div>
+</section>
+<section id="use-of-ai-tools" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="use-of-ai-tools"><span class="header-section-number">1.4</span> Use of AI tools</h2>
+<p>Before starting, we want to briefly address the use of AI tools. Large language models and AI systems such as OpenAI ChatGPT, Google Gemini, or Anthropic Claude are developing at a remarkable pace. These tools are particularly effective for coding and data analysis and can substantially accelerate quantitative workflows in the life sciences.</p>
+<p>AI can assist with writing and debugging code, exploring unfamiliar analysis approaches, and reducing the time required to implement computational methods. At the same time, it remains essential to maintain a solid conceptual understanding of the methods and analysis steps being used. We recommend doing introductory coding over the first few weeks of the with little to no use of AI for writing the code itself. However, AI tools (or forums such as stack overflow) are useful for debugging or helping with you’re stuck. Also be sure to look at and engage with any code generated by AI; AI hallucinations are real, and uncritical or overly reliant use of AI tools can lead to misleading or even blatantly incorrect analysis results.</p>
+<p>We also want to encourage you to use AI responsibly, with consideration for the large environmental impact that AI has; as of now (and we expect for the foreseeable future), AI it requires an enormous amount of energy and water use. We link materials for a further discussion of this issue in Canvas.</p>
+<section id="using-ai-tools-effectively-and-responsibly" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="using-ai-tools-effectively-and-responsibly"><span class="header-section-number">1.4.1</span> Using AI tools effectively and responsibly</h3>
+<p>To use AI tools productively while avoiding common pitfalls, we recommend the following practices:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Best practice: Using AI effectively and responsibly
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Break tasks into small steps.</strong> Ask for help with specific tasks rather than entire analysis pipelines.</p></li>
+<li><p><strong>Ensure you understand the code generated with AI assistance.</strong> Verify that you follow the logic of the code. If unsure of specific steps, you can ask the AI to explain what the code does and why.</p></li>
+<li><p><strong>Provide all the information needed when formulating an AI request.</strong> E.g. provide explicit information about data structure, column names, units, analysis goals. Supplying a table header or a short data description often leads to much more useful suggestions.</p></li>
+<li><p><strong>Test the code output</strong> As with any code, AI-generated code must be tested and analysis results must be validated. E.g. test code on small datasets or in limiting cases where the expected outcome is known.</p></li>
+<li><p><strong>Protect sensitive data.</strong> Do not share confidential, identifying, or unpublished data with AI tools.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="ai-use-in-this-course" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="ai-use-in-this-course"><span class="header-section-number">1.4.2</span> AI use in this course</h3>
+<p>In this course, we encourage the use of AI tools with a few exceptions.</p>
+<p><strong>AI when using problem sets.</strong> You may use AI tools to help set up analyses, explore code, and troubleshoot issues. Exceptions are problems or checkpoints explicitly marked as <code>no AI</code>, which must be completed without AI assistance to assess your own understanding.</p>
+<p><strong>AI during the project phase.</strong> You may also use AI tools during the final project phase for tasks such as coding, data wrangling, or plotting. Any such use must be disclosed in both the written report and the presentation (for example, a brief note describing what the AI was used for). You may not use AI tools to write the main text of the final project report; the scientific narrative and interpretation must be your own.</p>
+<div id="tbl-ai-rules-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ai-rules-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.1: Summary - AI use in this course
+</figcaption>
+<div aria-describedby="tbl-ai-rules-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Course component</strong></th>
+<th style="text-align: center;"><strong>AI use allowed</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Problem sets (problem marked <code>no AI</code>)</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Problem sets (all other problems)</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Final project: data analysis and coding</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Final project: writing and scientific narrative</td>
+<td style="text-align: center;">No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cremerlab\.github\.io\/BIO165");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="Welcome">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/1b-getting-python-notebooks.html" class="pagination-link" aria-label="Getting Python and notebooks to Run">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Python and notebooks to Run</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>BIO 165/265 · Stanford University · <a href="https://cremerlab.github.io">Cremer Lab</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cremerlab/BIO165">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

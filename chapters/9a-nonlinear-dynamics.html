@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>22&nbsp; Nonlinear Dynamics – Quantitative Approaches in Modern Biology</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../references.html" rel="next">
+<link href="../chapters/8c-stochastic-processes.html" rel="prev">
+<link href="../images/logo.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-55beddc79f2b70b4e9336f3af1a663d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">BIO 165 · Quantitative Biology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../chapters/1a-introduction.html" aria-current="page"> 
+<span class="menu-text">Lecture script</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../BIO165-lecture-script.pdf"> <i class="bi bi-file-earmark-pdf" role="img">
+</i> 
+<span class="menu-text">PDF</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/cremerlab/BIO165" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/9a-nonlinear-dynamics.html">Week 9: Nonlinear dynamics</a></li><li class="breadcrumb-item"><a href="../chapters/9a-nonlinear-dynamics.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Nonlinear Dynamics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1: Introduction and getting started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1a-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1b-getting-python-notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Python and notebooks to Run</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/1c-biological-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Biological data: Types and the Concept of Tidy Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2: Biological data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2a-biological-data-origin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Biological Data: Origin, Variability, and Rigor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2b-data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/2c-datasets-this-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datasets in this course</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3: Fitting and regression</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3a-fitting-importance-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fitting and the importance of Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3b-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/3c-non-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Non-linear regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 4: Probability and uncertainty</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4a-probabilistic-view-law.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A probabilistic view and the law of large numbers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4b-sampling-variability-standard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sampling variability and the standard error of the mean</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/4c-bootstrapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Bootstrapping</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 5: Hypothesis testing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5a-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/5b-multiple-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Multiple hypothesis testing</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 6: Counting statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/6a-counting-statistics-discrete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Counting Statistics and Discrete Biological Measurements</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 7: Omics and high-dimensional data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7a-omics-data-counting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Omics Data: From Counting to Cellular State</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7b-nonlinear-dimensionality-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear dimensionality reduction and UMAP</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/7c-clustering-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Clustering Algorithms</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 8: Dynamical systems and stochastic processes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8a-differential-equation-modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Differential equation and the modeling of dynamical systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8b-dynamical-relation-between.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">The Dynamical Relation Between mRNA and Proteins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/8c-stochastic-processes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Stochastic Processes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 9: Nonlinear dynamics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/9a-nonlinear-dynamics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Nonlinear Dynamics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#negative-feedback-in-gene-expression" id="toc-negative-feedback-in-gene-expression" class="nav-link active" data-scroll-target="#negative-feedback-in-gene-expression"><span class="header-section-number">22.1</span> Negative Feedback in Gene Expression</a></li>
+  <li><a href="#molecular-implementation-of-feedback-loops" id="toc-molecular-implementation-of-feedback-loops" class="nav-link" data-scroll-target="#molecular-implementation-of-feedback-loops"><span class="header-section-number">22.2</span> Molecular Implementation of Feedback Loops</a></li>
+  <li><a href="#positive-feedback-and-bistability" id="toc-positive-feedback-and-bistability" class="nav-link" data-scroll-target="#positive-feedback-and-bistability"><span class="header-section-number">22.3</span> Positive Feedback and Bistability</a></li>
+  <li><a href="#from-steady-states-to-bifurcations" id="toc-from-steady-states-to-bifurcations" class="nav-link" data-scroll-target="#from-steady-states-to-bifurcations"><span class="header-section-number">22.4</span> From Steady States to Bifurcations</a></li>
+  <li><a href="#switch-like-behavior" id="toc-switch-like-behavior" class="nav-link" data-scroll-target="#switch-like-behavior"><span class="header-section-number">22.5</span> Switch-like Behavior</a></li>
+  <li><a href="#nonlinearity-changes-system-structure" id="toc-nonlinearity-changes-system-structure" class="nav-link" data-scroll-target="#nonlinearity-changes-system-structure"><span class="header-section-number">22.6</span> Nonlinearity Changes System Structure</a></li>
+  <li><a href="#parameter-dependence-and-bifurcations" id="toc-parameter-dependence-and-bifurcations" class="nav-link" data-scroll-target="#parameter-dependence-and-bifurcations"><span class="header-section-number">22.7</span> Parameter Dependence and Bifurcations</a></li>
+  <li><a href="#hysteresis-and-memory" id="toc-hysteresis-and-memory" class="nav-link" data-scroll-target="#hysteresis-and-memory"><span class="header-section-number">22.8</span> Hysteresis and Memory</a></li>
+  <li><a href="#nonlinearity-changes-system-structure-1" id="toc-nonlinearity-changes-system-structure-1" class="nav-link" data-scroll-target="#nonlinearity-changes-system-structure-1"><span class="header-section-number">22.9</span> Nonlinearity Changes System Structure</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/9a-nonlinear-dynamics.html">Week 9: Nonlinear dynamics</a></li><li class="breadcrumb-item"><a href="../chapters/9a-nonlinear-dynamics.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Nonlinear Dynamics</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Nonlinear Dynamics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>So far, we have focused on dynamical systems that are <em>linear</em>. For example, in the central dogma model we described protein dynamics for a continously transcripbed gene (<span class="math inline">\(\kappa\)</span> is constant) in the form</p>
+<p><span class="math display">\[\frac{dp}{dt} = f(p),\]</span></p>
+<p>with</p>
+<p><span class="math display">\[f(p) = \gamma m - (\delta_p+\lambda)p.\]</span></p>
+<p>with <span class="math inline">\(m=m^*=\kappa/\delta_{mRNA}\)</span> being constant if a steady state in mRNA levels have been reached.</p>
+<p>This equation is called linear because the rate of change <span class="math inline">\(f(p)\)</span> depends linearly on the state variable <span class="math inline">\(p\)</span>. Production terms were either constant or proportional to upstream variables, and degradation terms were proportional to molecule number.</p>
+<p>1-dimensional linear systems possess a single steady state <span class="math inline">\(p^*\)</span>, defined mathematically by</p>
+<p><span class="math display">\[f(p^*) = 0.\]</span></p>
+<p>Graphically, this steady state corresponds to the point where the curve <span class="math inline">\(f(p)\)</span> crosses zero (Fig.&nbsp;??B). Stead states can be stable or unstable, that is a small deviation from the steady state either decays back towards the steady state (stable) or grows away from the steady state. In the case of linear protein synthesis discussed above, the steady state is stable. Mathematically, this happens as the slope of f around p is negative and it can be illustrated by arrows (Fig.&nbsp;??C).</p>
+<p>Linear systems provide an important baseline for understanding biological dynamics. For example, the central dogma model we introduced established a quantitative relationship between steady-state mRNA and protein abundance, capturing the general trends observed experimentally (Fig.&nbsp;<a href="8b-dynamical-relation-between.html#fig-prot-mrna" class="quarto-xref"><span>20.1</span></a>).</p>
+<p>However, biological systems are often inherently nonlinear. Nonlinearity enables qualitatively new behaviors that are biologically essential and impossible in purely linear systems. For example, proteins regulate their own production, transcription factors bind cooperatively, enzymes saturate, and promoters switch between active and inactive states. In all these cases, reaction rates depend on molecular concentrations in a nonlinear way generating features like threshold responses, switch-like behavior, multiple steady states, and memory of past signals.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info: Definition of Linear and Nonlinear Dynamical Systems
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider a one-dimensional dynamical system</p>
+<p><span class="math display">\[\frac{dx}{dt} = f(x).\]</span></p>
+<p>The system is called <em>linear</em> if the right-hand side is a linear function of the state variable <span class="math inline">\(x\)</span>, i.e.</p>
+<p><span class="math display">\[f(x) = a x + b,\]</span></p>
+<p>with constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
+<p>Equivalently, a system is linear if the state variable appears only to the first power and is not multiplied with itself or with other state variables.</p>
+<p>If <span class="math inline">\(f(x)\)</span> contains nonlinear functions of <span class="math inline">\(x\)</span> (for example powers <span class="math inline">\(x^n\)</span> with <span class="math inline">\(n \neq 1\)</span>, Hill functions, products of variables, exponentials, or other nonlinear dependencies), the system is called <em>nonlinear</em>.</p>
+<p>In a linear system, the rate of change depends at most proportionally on the current state. In a nonlinear system, the dependence on the state variable is more complex.</p>
+</div>
+</div>
+<section id="negative-feedback-in-gene-expression" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="negative-feedback-in-gene-expression"><span class="header-section-number">22.1</span> Negative Feedback in Gene Expression</h2>
+<p>As a first example of how nonlinearity impacts gene expression, consider a protein that represses its own transcription. This is a classical example of a <em>negative feedback loop</em>.</p>
+<p>Instead of a constant transcription rate <span class="math inline">\(\kappa\)</span>, we model transcription using a Hill-type repression function (Fig.&nbsp;??D):</p>
+<p><span class="math display">\[\kappa(p) = \frac{\kappa_0}{1 + (p/K)^n}.\]</span></p>
+<p>Here, <span class="math inline">\(\kappa_0\)</span> is the maximal transcription rate, <span class="math inline">\(K\)</span> sets the characteristic protein level at which repression becomes significant, and <span class="math inline">\(n\)</span> is the Hill coefficient describing cooperativity, that is how how steeply transcription changes with protein concentration. Such functional forms arise naturally from protein–DNA binding equilibria as we discussed further below.</p>
+<p>With this more complex transcription behavior, the full central dogma equations now become</p>
+<p><span class="math display">\[\frac{dm}{dt} = G \kappa(p) - \delta_m m,
+\qquad
+\frac{dp}{dt} = \gamma m - (\delta_p+\lambda)p.\]</span></p>
+<p>Mathematically, that is a fully coupled system of differential equations. mRNA copy numbers affect protein synthesis (translation), and protein copy numbers affect mRNA synthesis (transcription).</p>
+<p>To proceed, we here a small trick. Specifically, we assume that mRNA turnover is much faster than protein turnover. We use this separation of time scales to simplify the dynamics and focus on protein dynamics (see box):</p>
+<p><span class="math display">\[\frac{dp}{dt}
+=
+f(p)
+=
+\frac{\gamma G}{\delta_m}
+\frac{\kappa_0}{1 + (p/K)^n}
+-
+(\delta_p+\lambda)p.\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info: Separation of timescales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As we have seen from bacterial measurements, mRNA lifetimes are on the order of minutes, whereas protein turnover occurs on the order of hours. If this difference in time scales is sufficiently large, we can simplify the dynamics by assuming that mRNA rapidly adapts to its steady state while protein copy numbers <span class="math inline">\(p\)</span> change more slowly.</p>
+<p>Mathematically, we approximate mRNA by its quasi-steady value:</p>
+<p><span class="math display">\[m = m(p) \approx \frac{G\kappa(p)}{\delta_m}.\]</span></p>
+<p>Substituting this expression into the protein equation yields a single differential equation for the variable <span class="math inline">\(p\)</span>, as shown in the main text.</p>
+<p>This is a nice trick but notably it only works if timescales are clearly separated. For mRNA and protein dynamics this condition is well fulfilled in some scenario but it can also fail which is important to keep in mind.</p>
+</div>
+</div>
+<p>With this reduction, we can analyze the dynamics graphically again in a 1d representation. The function <span class="math inline">\(f(p)\)</span> is shown in Fig.&nbsp;??E. Steady states satisfy <span class="math inline">\(f(p^*) = 0\)</span>. As in the linear case, there is a single stable steady state toward which the system relaxes (Fig.&nbsp;XYC shows the flow diagram). However, <span class="math inline">\(f(p)\)</span> is now nonlinear. How does this differ from the linear case? Negative feedback increases the magnitude of the negative slope near <span class="math inline">\(p^*\)</span>. In other words, the restoring force becomes stronger.</p>
+<p>To illustrate this, we again consider gene expression ON-dynamics, comparing the linear and the negative-feedback scenarios ??. Starting from <span class="math inline">\(p=0\)</span>, the system with negative feedback approaches its steady state more rapidly. Thus, negative feedback enhances dynamic stability and accelerates relaxation toward the steady state.</p>
+<p>Beyond deterministic stability, negative feedback also affects stochastic fluctuations. In the simple linear birth–death model, protein noise at steady state is approximately Poisson:</p>
+<p><span class="math display">\[\mathrm{Var}(p) \approx \langle p \rangle.\]</span></p>
+<p>With negative feedback, fluctuations are actively corrected. If <span class="math inline">\(p\)</span> fluctuates upward, transcription decreases; if <span class="math inline">\(p\)</span> fluctuates downward, transcription increases. This suppresses variance relative to the unregulated case.</p>
+<p>Stochastic simulations (see Fig.&nbsp;<a href="#fig-negative-feedback-noise" class="quarto-xref"><span>22.1</span></a>) show that negative autoregulation reduces the Fano factor</p>
+<p><span class="math display">\[\frac{\mathrm{Var}(p)}{\langle p \rangle}\]</span></p>
+<p>compared to the linear model. For sufficiently strong feedback, protein fluctuations can become Poisson. When tweaking parameter levels, one can even get sub-Possonian.</p>
+<div id="fig-negative-feedback-noise" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-negative-feedback-noise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/placeholder.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;22.1: Noise suppression by negative feedback. Comparison of steady-state protein distributions for constitutive expression (linear model) and negative autoregulation with matched mean protein level. Negative feedback reduces variance and lowers the Fano factor relative to the Poisson baseline."><img src="../figs/placeholder.png" class="img-fluid figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-negative-feedback-noise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22.1: <strong>Noise suppression by negative feedback.</strong> Comparison of steady-state protein distributions for constitutive expression (linear model) and negative autoregulation with matched mean protein level. Negative feedback reduces variance and lowers the Fano factor relative to the Poisson baseline.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="molecular-implementation-of-feedback-loops" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="molecular-implementation-of-feedback-loops"><span class="header-section-number">22.2</span> Molecular Implementation of Feedback Loops</h2>
+<p>We have seen that negative feedback stabilizes both the mean expression level and the magnitude of stochastic fluctuations. Is this biologically relevant, and how can such feedback loops be implemented at the molecular level? The short answer is: feedback regulation is ubiquitous in biological systems, and it arises naturally from molecular interactions.</p>
+<p>To illustrate this more concretely, let us briefly revisit the basics of transcriptional control. Genes are not transcribed continuously at a constant rate. Instead, cells tightly regulate transcription by controlling the activity and recruitment of RNA polymerase (RNAP) to specific promoters.</p>
+<p>In bacteria such as <em>E.&nbsp;coli</em>, there are typically on the order of <span class="math inline">\(10^3\)</span>–<span class="math inline">\(10^4\)</span> RNA polymerase molecules per cell, while the chromosome contains several thousand genes. Not all promoters are actively engaged at the same time, and RNAP is therefore a limited resource that must be dynamically allocated.</p>
+<p>In eukaryotic cells, the situation is more complex. Multiple RNA polymerases transcribe different classes of genes, and transcription initiation involves large multi-protein complexes and chromatin remodeling. Nonetheless, the same general principle also applies: transcription depends on regulated molecular interactions at promoters.</p>
+<p>For a gene to be transcribed, RNA polymerase must bind to its promoter and initiate transcription. Cells control this recruitment through regulatory proteins, which either enhance or inhibit RNAP binding.</p>
+<p>As example, a negative feedback loop can be implemented when a the protein encoded by a gene acts as a repressor of its own promoter. As protein concentration increases, promoter occupancy by the repressor increases, reducing transcription.</p>
+<p>A textbook example is the <em>lac</em> operon in <em>E.&nbsp;coli</em>. The LacI repressor binds to operator sequences in the promoter region and blocks transcription. LacI can bind to multiple operator sites simultaneously, forming DNA loops that enhance repression. Such cooperative binding introduces nonlinearity in the transcription rate and can be described phenomenologically by Hill-type functions.</p>
+<p>Importantly, transcriptional control is only one class of nonlinear regulation in the cell, and the Hill-type functions we introduced represent just one mathematical manifestation. Allosteric regulation of metabolic enzymes controls metabolic fluxes in a nonlinear manner, phosphorylation–dephosphorylation cycles generate highly nonlinear responses in signaling pathways, and feedback between mechanical forces and molecular assembly produces nonlinear input–output relationships. Furthermore, spatial organization and compartmentalization introduce additional nonlinear effects, as reaction rates depend on local concentration, diffusion, and molecular crowding.</p>
+</section>
+<section id="positive-feedback-and-bistability" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="positive-feedback-and-bistability"><span class="header-section-number">22.3</span> Positive Feedback and Bistability</h2>
+<p>Negative feedback stabilizes expression levels. A second fundamental regulatory motif is <em>positive feedback</em>, in which a protein enhances its own production. Such self-activation can qualitatively change system behavior.</p>
+<p>To illustrate this within the central dogma framework, we here consider a scenario where transcription increases with protein abundance according to a Hill-type activation function:</p>
+<p><span class="math display">\[\kappa(p) = \kappa_0 \frac{(p/K)^n}{1 + (p/K)^n}.\]</span></p>
+<p>Here, <span class="math inline">\(\kappa_0\)</span> denotes the maximal transcription rate, <span class="math inline">\(K\)</span> sets the activation threshold, and <span class="math inline">\(n\)</span> controls the steepness (cooperativity) of the response. Unlike repression, this function increases sigmoidally with <span class="math inline">\(p\)</span>, reflecting that protein promotes its own production.</p>
+<p>Assuming time-scale separation between mRNA and protein dynamics, the protein dynamics reduce to</p>
+<p><span class="math display">\[\frac{dp}{dt}
+=
+f(p)
+=
+\frac{\gamma G}{\delta_m}
+\kappa(p)
+-
+(\delta_p+\lambda)p.\]</span></p>
+<p>The first term describes production via self-activation, the second term combines degradation and dilution.</p>
+<p>As before, steady states satisfy <span class="math display">\[f(p^*) = 0.\]</span></p>
+<p>Graphically, steady states correspond to intersections between:</p>
+<ul>
+<li><p>the nonlinear production term</p></li>
+<li><p>the linear loss term <span class="math inline">\((\delta_p+\lambda)p\)</span></p></li>
+</ul>
+<p>For certain parameter values, three intersections can occur. Two of these are stable and one is unstable. Stability follows from the slope condition:</p>
+<p><span class="math display">\[\left.\frac{df}{dp}\right|_{p^*} &lt; 0
+\quad \text{stable},
+\qquad
+\left.\frac{df}{dp}\right|_{p^*} &gt; 0
+\quad \text{unstable}.\]</span></p>
+<p>Intuitively, in the unstable state a small increase in <span class="math inline">\(p\)</span> causes further growth away from that state.</p>
+</section>
+<section id="from-steady-states-to-bifurcations" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="from-steady-states-to-bifurcations"><span class="header-section-number">22.4</span> From Steady States to Bifurcations</h2>
+<p>So far, we have analyzed steady states for one fixed set of parameters. However, biological systems operate under changing conditions.</p>
+<p>Suppose we vary a control parameter, for example:</p>
+<ul>
+<li><p>the maximal activation strength <span class="math inline">\(\kappa_0\)</span>,</p></li>
+<li><p>the cooperativity <span class="math inline">\(n\)</span>,</p></li>
+<li><p>or the growth rate <span class="math inline">\(\lambda\)</span> (dilution).</p></li>
+</ul>
+<p>Mathematically, steady states satisfy</p>
+<p><span class="math display">\[f(p^*, \lambda) = 0,\]</span></p>
+<p>so the steady-state protein level <span class="math inline">\(p^*\)</span> becomes a function of the parameter.</p>
+<p>For weak activation (small <span class="math inline">\(n\)</span> or low <span class="math inline">\(\kappa_0\)</span>), the curves intersect only once, producing a single stable steady state.</p>
+<p>However, for sufficiently strong positive feedback, three intersections appear.</p>
+<p>At specific critical parameter values, two steady states collide and annihilate each other. This qualitative change in the number of steady states is called a <em>bifurcation</em>.</p>
+<p>A bifurcation occurs when a small change in a parameter causes a qualitative change in system behavior.</p>
+<p>In this case, a saddle-node (fold) bifurcation creates or destroys a pair of steady states: one stable and one unstable.</p>
+<p>To visualize this systematically, we plot all steady states <span class="math inline">\(p^*\)</span> as a function of the control parameter.</p>
+<p>Such a plot is called a <em>bifurcation diagram</em>.</p>
+<p>Stable steady states are drawn as solid lines. Unstable steady states are drawn as dashed lines.</p>
+<p>For strong positive feedback, the diagram has an S-shape:</p>
+<ul>
+<li><p>A lower stable branch (low expression),</p></li>
+<li><p>An upper stable branch (high expression),</p></li>
+<li><p>An intermediate unstable branch separating them.</p></li>
+</ul>
+<p>The turning points correspond to saddle-node bifurcations.</p>
+</section>
+<section id="switch-like-behavior" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="switch-like-behavior"><span class="header-section-number">22.5</span> Switch-like Behavior</h2>
+<p>The presence of two stable steady states implies bistability.</p>
+<p>Small perturbations around either stable state decay back to that state. However, perturbations that cross the unstable threshold drive the system toward the alternative stable state.</p>
+<p>The system therefore behaves as a switch:</p>
+<ul>
+<li><p>Below a critical protein level, expression collapses to the low state.</p></li>
+<li><p>Above that threshold, expression rises to the high state.</p></li>
+</ul>
+<p>The unstable steady state acts as a separatrix: it divides the basins of attraction of the two stable states.</p>
+<p>Such behavior is impossible in linear systems and arises purely from nonlinear positive feedback.</p>
+<p>If we now slowly increase the control parameter (for example the activation strength), the system remains on the lower stable branch until the first saddle-node bifurcation is reached. At this point, the lower state disappears and the system jumps to the upper branch.</p>
+<p>If we subsequently decrease the parameter again, the system does not switch back at the same point. Instead, it returns at the second saddle-node bifurcation.</p>
+<p>Thus the transition thresholds depend on direction. This phenomenon is called hysteresis.</p>
+<p>Hysteresis means the system retains memory of its past state.</p>
+</section>
+<section id="nonlinearity-changes-system-structure" class="level2" data-number="22.6">
+<h2 data-number="22.6" class="anchored" data-anchor-id="nonlinearity-changes-system-structure"><span class="header-section-number">22.6</span> Nonlinearity Changes System Structure</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Linear Model</th>
+<th style="text-align: left;">Positive Feedback Model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Number of steady states</td>
+<td style="text-align: left;">One</td>
+<td style="text-align: left;">One or multiple</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Response to input</td>
+<td style="text-align: left;">Smooth</td>
+<td style="text-align: left;">Threshold-like</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Memory</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Possible</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Qualitative transitions</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Nonlinearity alters not just parameter sensitivity but the qualitative structure of the dynamical system.</p>
+</section>
+<section id="parameter-dependence-and-bifurcations" class="level2" data-number="22.7">
+<h2 data-number="22.7" class="anchored" data-anchor-id="parameter-dependence-and-bifurcations"><span class="header-section-number">22.7</span> Parameter Dependence and Bifurcations</h2>
+<p>So far, we have analyzed the system for fixed parameter values. However, biological systems rarely operate at fixed parameters. External signals, inducer concentrations, nutrient availability, or signaling inputs effectively modify parameters of the system, for example the maximal transcription rate <span class="math inline">\(\kappa_0\)</span>.</p>
+<p>We now ask a more general question:</p>
+<p><em>How do steady states change when a parameter is varied continuously?</em></p>
+<p>In the positive feedback system, the number and stability of steady states depend sensitively on <span class="math inline">\(\kappa_0\)</span>.</p>
+<p>For small <span class="math inline">\(\kappa_0\)</span>, production is too weak to sustain a high-expression state. Only a single low-expression steady state exists.</p>
+<p>As <span class="math inline">\(\kappa_0\)</span> increases, the sigmoidal production curve rises. At a critical value of <span class="math inline">\(\kappa_0\)</span>, two new steady states appear simultaneously: one stable and one unstable. The system now possesses three steady states.</p>
+<p>If <span class="math inline">\(\kappa_0\)</span> is increased further, the unstable and low-expression steady states eventually collide and disappear, leaving only the high-expression state.</p>
+<p>A qualitative change in the number or stability of steady states as a parameter is varied is called a <em>bifurcation</em>.</p>
+<p>Figure&nbsp;<a href="#fig-bifurcation" class="quarto-xref"><span>22.2</span></a> illustrates this behavior in a bifurcation diagram. The horizontal axis represents the control parameter <span class="math inline">\(\kappa_0\)</span>, while the vertical axis shows the corresponding steady-state protein levels <span class="math inline">\(p^*\)</span>. Solid lines denote stable steady states, and dashed lines denote unstable steady states.</p>
+<div id="fig-bifurcation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bifurcation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/placeholder.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;22.2: Bifurcation diagram for positive feedback. Steady-state protein levels p^* as a function of the maximal transcription rate \kappa_0. For small \kappa_0, a single stable steady state exists. At a critical value, two additional steady states appear (one stable, one unstable). Over an intermediate range of \kappa_0, the system is bistable. Stable steady states are shown as solid lines, unstable steady states as dashed lines."><img src="../figs/placeholder.png" class="img-fluid figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bifurcation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22.2: <strong>Bifurcation diagram for positive feedback.</strong> Steady-state protein levels <span class="math inline">\(p^*\)</span> as a function of the maximal transcription rate <span class="math inline">\(\kappa_0\)</span>. For small <span class="math inline">\(\kappa_0\)</span>, a single stable steady state exists. At a critical value, two additional steady states appear (one stable, one unstable). Over an intermediate range of <span class="math inline">\(\kappa_0\)</span>, the system is bistable. Stable steady states are shown as solid lines, unstable steady states as dashed lines.
+</figcaption>
+</figure>
+</div>
+<p>This diagram summarizes how nonlinearity changes the structure of the system. In contrast to linear systems, where steady states vary smoothly with parameters, nonlinear systems can undergo abrupt qualitative transitions.</p>
+</section>
+<section id="hysteresis-and-memory" class="level2" data-number="22.8">
+<h2 data-number="22.8" class="anchored" data-anchor-id="hysteresis-and-memory"><span class="header-section-number">22.8</span> Hysteresis and Memory</h2>
+<p>The existence of two stable steady states over a range of parameter values has an important dynamical consequence: the system’s behavior depends on its history.</p>
+<p>Suppose <span class="math inline">\(\kappa_0\)</span> is slowly increased from a small value. The system remains in the low-expression state until the upper bifurcation point is reached. At that point, the low state disappears and the system switches abruptly to the high-expression state.</p>
+<p>Now suppose <span class="math inline">\(\kappa_0\)</span> is decreased again. The system does not immediately return to the low state. Instead, it remains in the high-expression state until a lower critical value of <span class="math inline">\(\kappa_0\)</span> is reached, where the high state disappears.</p>
+<p>Because the switching points differ depending on the direction of parameter change, the system exhibits <em>hysteresis</em>.</p>
+<p>Hysteresis implies memory. The current state of the system depends not only on the current parameter value, but also on the path by which that value was reached.</p>
+<div id="fig-hysteresis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hysteresis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figs/placeholder.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;22.3: Hysteresis in a bistable system. When the control parameter \kappa_0 is increased (forward sweep), the system switches from low to high expression at the upper threshold. When \kappa_0 is decreased (backward sweep), the switch back occurs at a lower threshold. The system therefore displays path-dependent behavior."><img src="../figs/placeholder.png" class="img-fluid figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hysteresis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22.3: <strong>Hysteresis in a bistable system.</strong> When the control parameter <span class="math inline">\(\kappa_0\)</span> is increased (forward sweep), the system switches from low to high expression at the upper threshold. When <span class="math inline">\(\kappa_0\)</span> is decreased (backward sweep), the switch back occurs at a lower threshold. The system therefore displays path-dependent behavior.
+</figcaption>
+</figure>
+</div>
+<p>Such hysteretic behavior is impossible in linear systems. It arises purely from nonlinear feedback and the coexistence of multiple stable steady states.</p>
+<p>Biologically, hysteresis enables robust cell-fate decisions, irreversible developmental transitions, and stable differentiation states. Once a system has switched into a high-expression state, it can remain there even if the inducing signal is partially removed.</p>
+</section>
+<section id="nonlinearity-changes-system-structure-1" class="level2" data-number="22.9">
+<h2 data-number="22.9" class="anchored" data-anchor-id="nonlinearity-changes-system-structure-1"><span class="header-section-number">22.9</span> Nonlinearity Changes System Structure</h2>
+<p>We can now summarize the progression:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 21%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Linear System</th>
+<th style="text-align: left;">Positive Feedback System</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Number of steady states</td>
+<td style="text-align: left;">One</td>
+<td style="text-align: left;">One or multiple</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Response to parameter change</td>
+<td style="text-align: left;">Smooth</td>
+<td style="text-align: left;">Abrupt (bifurcation)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Memory</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Possible (hysteresis)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Qualitative transitions</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Nonlinearity does not merely modify parameter sensitivity. It changes the qualitative structure of the dynamical system.</p>
+<p>This structural change — the emergence of multiple stable states, bifurcations, and hysteresis — underlies many forms of biological decision-making.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cremerlab\.github\.io\/BIO165");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/8c-stochastic-processes.html" class="pagination-link" aria-label="Stochastic Processes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Stochastic Processes</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>BIO 165/265 · Stanford University · <a href="https://cremerlab.github.io">Cremer Lab</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cremerlab/BIO165">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
