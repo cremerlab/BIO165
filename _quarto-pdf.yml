@@ -1,0 +1,12 @@
+# PDF of the lecture script: quarto render --profile pdf --to pdf
+project:
+  output-dir: _pdf
+
+format:
+  pdf:
+    documentclass: scrreprt
+    papersize: letter
+    number-sections: true
+    toc: true
+    colorlinks: true
+    pdf-engine: lualatex

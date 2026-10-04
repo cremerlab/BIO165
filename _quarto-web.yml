@@ -1,0 +1,14 @@
+# Website build (default profile): adds the dry labs to the book.
+# Arrays are merged, so these chapters are appended to those in _quarto.yml.
+project:
+  post-render: scripts/post-render.py
+
+# Dry labs are not public yet. To add them, restore the drylabs/ folder
+# (draft in old_script/drylabs_draft) and uncomment:
+# book:
+#   chapters:
+#     - part: "Dry labs"
+#       chapters:
+#         - text: "Overview"
+#           href: drylabs/index.qmd
+#         - drylabs/BIO165_W1_problem_set.ipynb

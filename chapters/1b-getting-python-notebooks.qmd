@@ -1,0 +1,145 @@
+# Getting Python and notebooks to Run {#sec-script-intro-to-vs-and-python}
+
+Let us next see how to run analysis code and the computational notebooks used in each dry lab. In this course, we will use the Python programming language together with Jupyter for data analysis and visualization.
+There are many ways to run Python and Jupyter, including Google Colab, JupyterLab, PyCharm, Anaconda Navigator, or directly from the terminal. All of these options are perfectly fine for this course. However, we highly recommend using Visual Studio Code (VS Code) together with a clean Python installation on your own computer. VS Code is free, works across operating systems, and integrates very well with Python scripts and Jupyter notebooks. Setting up your own local environment gives you the most flexibility to extend analyses and work on your own projects in the future.
+
+::: callout-note
+## Info: Other editor preferences and R use
+
+Feel free to use the Python editor and development environment you prefer. Similarly, you may also use **R**, another powerful language for data handling and analysis, to work on the problem sets and provide solutions. However, computational notebooks are provided only in Python, and using R would require translating the notebooks yourself.
+:::
+
+## Setup VS Code and Python
+
+Installing VS Code and Python is straightforward. Basic instructions are provided here.
+
+### VS Code
+
+1.  Go to <https://code.visualstudio.com> and download the installer for your operating system.
+
+2.  Install VS Code using the default options.
+
+3.  Install the Python extension: Open VS Code and go to the Extensions view (left sidebar). Search for `Python` and install the Python extension by Microsoft. This extension is strongly recommended and assumed for the remainder of the course.
+
+4.  Install the Jupyter extension: In the Extensions view, search for `Jupyter` and install the Jupyter extension by Microsoft. This extension is required to open and run Jupyter notebooks (`.ipynb`) inside VS Code.
+
+5.  Set up a new project folder for this class in a designated location on your computer.
+
+### Python
+
+Next, install Python. There are several ways to do this. We recommend installing Python via **Miniforge**, which provides the `conda` and `mamba` package managers. This approach helps avoid version conflicts that can arise when incompatible packages are installed globally.
+
+1.  Download Miniforge from <https://github.com/conda-forge/miniforge>. Choose the installer appropriate for your system (e.g. `arm64` for newer Apple Silicon Macs).
+
+2.  Install Miniforge using the default settings.
+
+3.  After installation, open a terminal and verify that Python and `mamba` are available:
+
+    ``` bash
+    python --version
+    mamba --version
+    ```
+
+    We recommend doing this in the terminal integrated into VS Code.
+
+### The terminal and command line
+
+Many setup and debugging steps require entering commands in a terminal (also called a shell or command prompt). In VS Code, the terminal is typically located at the bottom of the editor. You can open it via `View `$\rightarrow$` Terminal` or using the shortcut `` Ctrl+` `` (Windows/Linux) or `` Cmd+` `` (macOS).
+
+## Python environments and packages
+
+Python becomes powerful when used together with external packages such as
+`numpy`, `pandas`, `matplotlib`, and `scipy`.
+However, installing many packages globally can easily lead to version conflicts and broken setups.
+
+To avoid these issues, it is highly usefull to work in a dedicated Python environment:
+a self-contained workspace with its own Python version and package set. This also supports reproducibility and makes it easier to share code. Here, we will use the environment tool mamba.
+
+1.  Recommendation: Before creating environments, make sure `conda-forge` is used as the
+    primary package channel (this only needs to be done once per machine and reduces chances for package incompatibilities):
+
+    ``` bash
+    conda config --add channels conda-forge
+    conda config --set channel_priority strict
+    ```
+
+2.  Create a new environment named `BIO165`:
+
+    ``` bash
+    mamba create -n BIO165 python=3.11
+    ```
+
+3.  Activate the environment:
+
+    ``` bash
+    mamba activate BIO165
+    ```
+
+4.  Install core packages needed for the first part of the course:
+
+    ``` bash
+    mamba install numpy pandas matplotlib scipy seaborn jupyter ipykernel
+    ```
+
+5.  If everything works, you can already install packages that will be used
+    later in the class:
+
+    ``` bash
+    mamba install pyDESeq2 umap-learn
+    ```
+
+    You might get a request to downgrade numpy to an earlier version which you can accept.
+
+6.  The environment should appear as a selectable kernel in Jupyter (after restarting VS Code).
+
+    A kernel is the Python process that runs the notebook and determines which
+    environment (Python version and packages) is used. In VS Code, the kernel can be selected via a button in the upper right corner of the notebook. See info box if the environment does not appear as a selectable kernel.
+
+7.  You can check the packages installed in the current environment:
+
+    ``` bash
+    mamba list
+    ```
+
+::: callout-note
+## Info: Troubleshooting: VS Code cannot find my environment / kernel
+
+If VS Code does not show the `BIO165` environment as a selectable kernel, there are a few options.
+
+1.  **Restart VS Code.** This often refreshes the environment detection and allows you to select the environment.
+
+2.  **Select the interpreter manually:**
+    Open the Command Palette (Cmd+Shift+P on macOS, Ctrl+Shift+P on Windows/Linux),
+    then run Python: Select Interpreter and choose BIO165.
+
+3.  **Install/register the kernel explicitly (fallback):**
+
+    ``` bash
+    mamba activate BIO165
+    python -m ipykernel install --user --name BIO165 
+    ```
+:::
+
+### Using environments and kernels in VS Code
+
+- Open a Jupyter notebook (`.ipynb`) in VS Code.
+
+- In the upper-right corner select the Python interpreter or Jupyter kernel corresponding to the environment `BIO165`.
+
+Registering or selecting one environment does not restrict you to it. You are free to create and use multiple environments and choose the appropriate kernel each time you run a notebook.
+
+### Running Jupyter notebooks {#sec-running-jupyter}
+
+Jupyter notebooks are interactive documents that combine narrative text, executable code, and output (such as tables or plots) in a single file.
+
+Rather than launching Jupyter separately, we will run notebooks directly inside VS Code.
+
+To open and run a notebook:
+
+1.  Open a Jupyter notebook file in VS Code (e.g. the coding tutorial from week 1).
+
+2.  Select the Python kernel corresponding to your environment (e.g. `BIO165`) when prompted, or via the kernel selector in the upper-right corner.
+
+3.  Execute code cells using `Shift+Enter`.
+
+Next steps: A short introduction to Python and Jupyter is provided in a tutorial notebook for this course, which we will work through together during the first Thursday class.

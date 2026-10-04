@@ -1,0 +1,396 @@
+# Nonlinear Dynamics
+
+So far, we have focused on dynamical systems that are *linear*. For example, in the central dogma model we described protein dynamics for a continously transcripbed gene ($\kappa$ is constant) in the form
+
+$$\frac{dp}{dt} = f(p),$$
+
+with
+
+$$f(p) = \gamma m - (\delta_p+\lambda)p.$$
+
+with $m=m^*=\kappa/\delta_{mRNA}$ being constant if a steady state in mRNA levels have been reached.
+
+This equation is called linear because the rate of change $f(p)$ depends linearly on the state variable $p$. Production terms were either constant or proportional to upstream variables, and degradation terms were proportional to molecule number.
+
+1-dimensional linear systems possess a single steady state $p^*$, defined mathematically by
+
+$$f(p^*) = 0.$$
+
+Graphically, this steady state corresponds to the point where the curve $f(p)$ crosses zero (Fig. ??B). Stead states can be stable or unstable, that is a small deviation from the steady state either decays back towards the steady state (stable) or grows away from the steady state. In the case of linear protein synthesis discussed above, the steady state is stable. Mathematically, this happens as the slope of f around p is negative and it can be illustrated by arrows (Fig. ??C).
+
+Linear systems provide an important baseline for understanding biological dynamics. For example, the central dogma model we introduced established a quantitative relationship between steady-state mRNA and protein abundance, capturing the general trends observed experimentally (Fig. [-@fig-prot-mrna]).
+
+However, biological systems are often inherently nonlinear. Nonlinearity enables qualitatively new behaviors that are biologically essential and impossible in purely linear systems. For example, proteins regulate their own production, transcription factors bind cooperatively, enzymes saturate, and promoters switch between active and inactive states. In all these cases, reaction rates depend on molecular concentrations in a nonlinear way generating features like threshold responses, switch-like behavior, multiple steady states, and memory of past signals.
+
+::: callout-note
+## Info: Definition of Linear and Nonlinear Dynamical Systems
+
+Consider a one-dimensional dynamical system
+
+$$\frac{dx}{dt} = f(x).$$
+
+The system is called *linear* if the right-hand side is a linear function of the state variable $x$, i.e.
+
+$$f(x) = a x + b,$$
+
+with constants $a$ and $b$.
+
+Equivalently, a system is linear if the state variable appears only to the first power and is not multiplied with itself or with other state variables.
+
+If $f(x)$ contains nonlinear functions of $x$
+(for example powers $x^n$ with $n \neq 1$, Hill functions, products of variables, exponentials, or other nonlinear dependencies),
+the system is called *nonlinear*.
+
+In a linear system, the rate of change depends at most proportionally on the current state.
+In a nonlinear system, the dependence on the state variable is more complex.
+:::
+
+## Negative Feedback in Gene Expression
+
+As a first example of how nonlinearity impacts gene expression,
+consider a protein that represses its own transcription. This is a classical example of a *negative feedback loop*.
+
+Instead of a constant transcription rate $\kappa$, we model transcription using a Hill-type repression function (Fig. ??D):
+
+$$\kappa(p) = \frac{\kappa_0}{1 + (p/K)^n}.$$
+
+Here, $\kappa_0$ is the maximal transcription rate, $K$ sets the characteristic protein level at which repression becomes significant,
+and $n$ is the Hill coefficient describing cooperativity, that is how how steeply transcription changes with protein concentration. Such functional forms arise naturally from protein--DNA binding equilibria as we discussed further below.
+
+With this more complex transcription behavior, the full central dogma equations now become
+
+$$\frac{dm}{dt} = G \kappa(p) - \delta_m m,
+\qquad
+\frac{dp}{dt} = \gamma m - (\delta_p+\lambda)p.$$
+
+Mathematically, that is a fully coupled system of differential equations.
+mRNA copy numbers affect protein synthesis (translation), and protein copy numbers affect mRNA synthesis (transcription).
+
+To proceed, we here a small trick. Specifically, we assume that mRNA turnover is much faster than protein turnover. We use this separation of time scales to simplify the dynamics and focus on protein dynamics (see box):
+
+$$\frac{dp}{dt}
+=
+f(p)
+=
+\frac{\gamma G}{\delta_m}
+\frac{\kappa_0}{1 + (p/K)^n}
+-
+(\delta_p+\lambda)p.$$
+
+::: callout-note
+## Info: Separation of timescales
+
+As we have seen from bacterial measurements, mRNA lifetimes are on the order of minutes, whereas protein turnover occurs on the order of hours.
+If this difference in time scales is sufficiently large, we can simplify the dynamics by assuming that mRNA rapidly adapts to its steady state while protein copy numbers $p$ change more slowly.
+
+Mathematically, we approximate mRNA by its quasi-steady value:
+
+$$m = m(p) \approx \frac{G\kappa(p)}{\delta_m}.$$
+
+Substituting this expression into the protein equation yields
+a single differential equation for the variable $p$,
+as shown in the main text.
+
+This is a nice trick but notably it only works if timescales are clearly separated. For mRNA and protein dynamics this condition is well fulfilled in some scenario but it can also fail which is important to keep in mind.
+:::
+
+With this reduction, we can analyze the dynamics graphically again in a 1d representation. The function $f(p)$ is shown in Fig. ??E.
+Steady states satisfy $f(p^*) = 0$. As in the linear case, there is a single stable steady state toward which the system relaxes (Fig. XYC shows the flow diagram). However, $f(p)$ is now nonlinear. How does this differ from the linear case? Negative feedback increases the magnitude of the negative slope near $p^*$. In other words, the restoring force becomes stronger.
+
+To illustrate this, we again consider gene expression ON-dynamics, comparing the linear and the negative-feedback scenarios ??. Starting from $p=0$, the system with negative feedback approaches its steady state more rapidly. Thus, negative feedback enhances dynamic stability and accelerates relaxation toward the steady state.
+
+Beyond deterministic stability, negative feedback also affects stochastic fluctuations. In the simple linear birth--death model, protein noise at steady state is approximately Poisson:
+
+$$\mathrm{Var}(p) \approx \langle p \rangle.$$
+
+With negative feedback, fluctuations are actively corrected.
+If $p$ fluctuates upward, transcription decreases; if $p$ fluctuates downward, transcription increases.
+This suppresses variance relative to the unregulated case.
+
+Stochastic simulations (see Fig. [-@fig-negative-feedback-noise]) show that
+negative autoregulation reduces the Fano factor
+
+$$\frac{\mathrm{Var}(p)}{\langle p \rangle}$$
+
+compared to the linear model. For sufficiently strong feedback, protein fluctuations can become Poisson. When tweaking parameter levels, one can even get sub-Possonian.
+
+![**Noise suppression by negative feedback.** Comparison of steady-state protein distributions for constitutive expression (linear model) and negative autoregulation with matched mean protein level. Negative feedback reduces variance and lowers the Fano factor relative to the Poisson baseline.](../figs/placeholder.png){#fig-negative-feedback-noise width="80%"}
+
+## Molecular Implementation of Feedback Loops
+
+We have seen that negative feedback stabilizes both the mean expression level and the magnitude of stochastic fluctuations. Is this biologically relevant, and how can such feedback loops be implemented at the molecular level? The short answer is: feedback regulation is ubiquitous in biological systems, and it arises naturally from molecular interactions.
+
+To illustrate this more concretely, let us briefly revisit the basics of transcriptional control.
+Genes are not transcribed continuously at a constant rate.
+Instead, cells tightly regulate transcription by controlling the activity and recruitment of RNA polymerase (RNAP) to specific promoters.
+
+In bacteria such as *E. coli*, there are typically on the order of
+$10^3$--$10^4$ RNA polymerase molecules per cell,
+while the chromosome contains several thousand genes. Not all promoters are actively engaged at the same time, and RNAP is therefore a limited resource that must be dynamically allocated.
+
+In eukaryotic cells, the situation is more complex.
+Multiple RNA polymerases transcribe different classes of genes, and transcription initiation involves large multi-protein complexes and chromatin remodeling. Nonetheless, the same general principle also applies: transcription depends on regulated molecular interactions at promoters.
+
+For a gene to be transcribed, RNA polymerase must bind to its promoter and initiate transcription. Cells control this recruitment through regulatory proteins, which either enhance or inhibit RNAP binding.
+
+As example, a negative feedback loop can be implemented when a
+the protein encoded by a gene acts as a repressor of its own promoter.
+As protein concentration increases, promoter occupancy by the repressor increases, reducing transcription.
+
+A textbook example is the *lac* operon in *E. coli*. The LacI repressor binds to operator sequences in the promoter region
+and blocks transcription. LacI can bind to multiple operator sites simultaneously, forming DNA loops that enhance repression.
+Such cooperative binding introduces nonlinearity in the transcription rate and can be described phenomenologically by Hill-type functions.
+
+Importantly, transcriptional control is only one class of nonlinear regulation in the cell, and the Hill-type functions we introduced represent just one mathematical manifestation. Allosteric regulation of metabolic enzymes controls metabolic fluxes in a nonlinear manner, phosphorylation--dephosphorylation cycles generate highly nonlinear responses in signaling pathways, and feedback between mechanical forces and molecular assembly produces nonlinear input--output relationships. Furthermore, spatial organization and compartmentalization introduce additional nonlinear effects, as reaction rates depend on local concentration, diffusion, and molecular crowding.
+
+## Positive Feedback and Bistability
+
+Negative feedback stabilizes expression levels.
+A second fundamental regulatory motif is *positive feedback*,
+in which a protein enhances its own production.
+Such self-activation can qualitatively change system behavior.
+
+To illustrate this within the central dogma framework,
+we here consider a scenario where transcription increases with protein abundance according to a Hill-type activation function:
+
+$$\kappa(p) = \kappa_0 \frac{(p/K)^n}{1 + (p/K)^n}.$$
+
+Here, $\kappa_0$ denotes the maximal transcription rate,
+$K$ sets the activation threshold,
+and $n$ controls the steepness (cooperativity) of the response.
+Unlike repression, this function increases sigmoidally with $p$,
+reflecting that protein promotes its own production.
+
+Assuming time-scale separation between mRNA and protein dynamics,
+the protein dynamics reduce to
+
+$$\frac{dp}{dt}
+=
+f(p)
+=
+\frac{\gamma G}{\delta_m}
+\kappa(p)
+-
+(\delta_p+\lambda)p.$$
+
+The first term describes production via self-activation,
+the second term combines degradation and dilution.
+
+As before, steady states satisfy
+$$f(p^*) = 0.$$
+
+Graphically, steady states correspond to intersections between:
+
+- the nonlinear production term
+
+- the linear loss term $(\delta_p+\lambda)p$
+
+For certain parameter values, three intersections can occur.
+Two of these are stable and one is unstable.
+Stability follows from the slope condition:
+
+$$\left.\frac{df}{dp}\right|_{p^*} < 0
+\quad \text{stable}, 
+\qquad
+\left.\frac{df}{dp}\right|_{p^*} > 0
+\quad \text{unstable}.$$
+
+Intuitively, in the unstable state a small increase in $p$
+causes further growth away from that state.
+
+## From Steady States to Bifurcations
+
+So far, we have analyzed steady states for one fixed set of parameters.
+However, biological systems operate under changing conditions.
+
+Suppose we vary a control parameter, for example:
+
+- the maximal activation strength $\kappa_0$,
+
+- the cooperativity $n$,
+
+- or the growth rate $\lambda$ (dilution).
+
+Mathematically, steady states satisfy
+
+$$f(p^*, \lambda) = 0,$$
+
+so the steady-state protein level $p^*$ becomes a function of the parameter.
+
+For weak activation (small $n$ or low $\kappa_0$),
+the curves intersect only once, producing a single stable steady state.
+
+However, for sufficiently strong positive feedback,
+three intersections appear.
+
+At specific critical parameter values,
+two steady states collide and annihilate each other.
+This qualitative change in the number of steady states
+is called a *bifurcation*.
+
+A bifurcation occurs when a small change in a parameter
+causes a qualitative change in system behavior.
+
+In this case, a saddle-node (fold) bifurcation creates or destroys
+a pair of steady states: one stable and one unstable.
+
+To visualize this systematically,
+we plot all steady states $p^*$
+as a function of the control parameter.
+
+Such a plot is called a *bifurcation diagram*.
+
+Stable steady states are drawn as solid lines.
+Unstable steady states are drawn as dashed lines.
+
+For strong positive feedback, the diagram has an S-shape:
+
+- A lower stable branch (low expression),
+
+- An upper stable branch (high expression),
+
+- An intermediate unstable branch separating them.
+
+The turning points correspond to saddle-node bifurcations.
+
+## Switch-like Behavior
+
+The presence of two stable steady states implies bistability.
+
+Small perturbations around either stable state decay back to that state.
+However, perturbations that cross the unstable threshold drive the system
+toward the alternative stable state.
+
+The system therefore behaves as a switch:
+
+- Below a critical protein level, expression collapses to the low state.
+
+- Above that threshold, expression rises to the high state.
+
+The unstable steady state acts as a separatrix:
+it divides the basins of attraction of the two stable states.
+
+Such behavior is impossible in linear systems
+and arises purely from nonlinear positive feedback.
+
+If we now slowly increase the control parameter
+(for example the activation strength),
+the system remains on the lower stable branch
+until the first saddle-node bifurcation is reached.
+At this point, the lower state disappears
+and the system jumps to the upper branch.
+
+If we subsequently decrease the parameter again,
+the system does not switch back at the same point.
+Instead, it returns at the second saddle-node bifurcation.
+
+Thus the transition thresholds depend on direction.
+This phenomenon is called hysteresis.
+
+Hysteresis means the system retains memory of its past state.
+
+## Nonlinearity Changes System Structure
+
+|                         | Linear Model | Positive Feedback Model |
+|:------------------------|:-------------|:------------------------|
+| Number of steady states | One          | One or multiple         |
+| Response to input       | Smooth       | Threshold-like          |
+| Memory                  | None         | Possible                |
+| Qualitative transitions | No           | Yes                     |
+
+Nonlinearity alters not just parameter sensitivity
+but the qualitative structure of the dynamical system.
+
+## Parameter Dependence and Bifurcations
+
+So far, we have analyzed the system for fixed parameter values.
+However, biological systems rarely operate at fixed parameters.
+External signals, inducer concentrations, nutrient availability,
+or signaling inputs effectively modify parameters of the system,
+for example the maximal transcription rate $\kappa_0$.
+
+We now ask a more general question:
+
+*How do steady states change when a parameter is varied continuously?*
+
+In the positive feedback system, the number and stability of steady states depend sensitively on $\kappa_0$.
+
+For small $\kappa_0$, production is too weak to sustain a high-expression state.
+Only a single low-expression steady state exists.
+
+As $\kappa_0$ increases, the sigmoidal production curve rises.
+At a critical value of $\kappa_0$, two new steady states appear simultaneously:
+one stable and one unstable.
+The system now possesses three steady states.
+
+If $\kappa_0$ is increased further,
+the unstable and low-expression steady states eventually collide and disappear,
+leaving only the high-expression state.
+
+A qualitative change in the number or stability of steady states
+as a parameter is varied is called a *bifurcation*.
+
+Figure [-@fig-bifurcation] illustrates this behavior in a bifurcation diagram.
+The horizontal axis represents the control parameter $\kappa_0$,
+while the vertical axis shows the corresponding steady-state protein levels $p^*$.
+Solid lines denote stable steady states,
+and dashed lines denote unstable steady states.
+
+![**Bifurcation diagram for positive feedback.** Steady-state protein levels $p^*$ as a function of the maximal transcription rate $\kappa_0$. For small $\kappa_0$, a single stable steady state exists. At a critical value, two additional steady states appear (one stable, one unstable). Over an intermediate range of $\kappa_0$, the system is bistable. Stable steady states are shown as solid lines, unstable steady states as dashed lines.](../figs/placeholder.png){#fig-bifurcation width="75%"}
+
+This diagram summarizes how nonlinearity changes the structure of the system.
+In contrast to linear systems, where steady states vary smoothly with parameters,
+nonlinear systems can undergo abrupt qualitative transitions.
+
+## Hysteresis and Memory
+
+The existence of two stable steady states over a range of parameter values
+has an important dynamical consequence:
+the system's behavior depends on its history.
+
+Suppose $\kappa_0$ is slowly increased from a small value.
+The system remains in the low-expression state
+until the upper bifurcation point is reached.
+At that point, the low state disappears and the system
+switches abruptly to the high-expression state.
+
+Now suppose $\kappa_0$ is decreased again.
+The system does not immediately return to the low state.
+Instead, it remains in the high-expression state
+until a lower critical value of $\kappa_0$ is reached,
+where the high state disappears.
+
+Because the switching points differ depending on the direction of parameter change,
+the system exhibits *hysteresis*.
+
+Hysteresis implies memory.
+The current state of the system depends not only on the current parameter value,
+but also on the path by which that value was reached.
+
+![**Hysteresis in a bistable system.** When the control parameter $\kappa_0$ is increased (forward sweep), the system switches from low to high expression at the upper threshold. When $\kappa_0$ is decreased (backward sweep), the switch back occurs at a lower threshold. The system therefore displays path-dependent behavior.](../figs/placeholder.png){#fig-hysteresis width="75%"}
+
+Such hysteretic behavior is impossible in linear systems.
+It arises purely from nonlinear feedback and the coexistence of multiple stable steady states.
+
+Biologically, hysteresis enables robust cell-fate decisions,
+irreversible developmental transitions,
+and stable differentiation states.
+Once a system has switched into a high-expression state,
+it can remain there even if the inducing signal is partially removed.
+
+## Nonlinearity Changes System Structure
+
+We can now summarize the progression:
+
+|                              | Linear System | Positive Feedback System |
+|:-----------------------------|:--------------|:-------------------------|
+| Number of steady states      | One           | One or multiple          |
+| Response to parameter change | Smooth        | Abrupt (bifurcation)     |
+| Memory                       | None          | Possible (hysteresis)    |
+| Qualitative transitions      | No            | Yes                      |
+
+Nonlinearity does not merely modify parameter sensitivity.
+It changes the qualitative structure of the dynamical system.
+
+This structural change --- the emergence of multiple stable states,
+bifurcations, and hysteresis --- underlies many forms of biological decision-making.

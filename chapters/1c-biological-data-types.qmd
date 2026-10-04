@@ -1,0 +1,173 @@
+# Biological data: Types and the Concept of Tidy Data {#sec-tidydata}
+
+Life operates across molecular, cellular, organismal, and ecological scales.
+A wide range of experimental approaches has been developed to measure and
+observe processes operating at these different levels. As a result,
+biological data can take many different forms. A few examples
+are summarized here:
+
+::: callout-tip
+## Example
+
+**Examples of biological data across molecular, cellular, and organismal scales.**
+
+- **Molecular scale:**
+  gene expression measured by RNA sequencing, protein abundance measured by mass spectrometry, metabolite levels measured by chromatography-based methods.
+
+- **Cellular scale:**
+  cell growth measured by optical density or cell counts, gene expression or signaling activity measured by fluorescent reporters, single-cell states measured by flow cytometry or single-cell sequencing.
+
+- **Organismal and tissue scale:**
+  spatial organization measured by microscopy, physiological signals measured by sensors or recordings, behavior and development measured by tracking or observation.
+:::
+
+As a consequence, the file formats we interact with also vary widely, including, for example, CSV, Excel, FASTA/FASTQ, TIFF, PNG, JSON, HDF5, and many others. While each data type and format requires specific handling steps, there are two fundamental points we want to emphasize here to get going: metadata matters, and tables are fundamental for quantitative analyses.
+
+## Metadata
+
+Every dataset comes with context: how and when an experiment was
+performed, what strain or sample was used, which instrument generated
+the signal, under which environmental conditions, what preprocessing was
+done, and who carried out which step. This contextual information is
+called **metadata**. Often included information are summarized
+here:
+
+::: callout-tip
+## Example: Important metadata
+
+- **Sample and biological context:**
+  sample identifiers, strain or genotype names, organism, tissue or cell type, treatment conditions, experimental group labels
+
+- **Measurement definition:**
+  units, measurement type, time stamps, sampling intervals, spatial coordinates, replicate identifiers
+
+- **Experimental and technical context:**
+  instrument type and version, acquisition settings, calibration information, reagent or antibody batches, lot numbers
+
+- **Processing and analysis history:**
+  preprocessing steps already applied, normalization methods, filtering criteria, background subtraction, software versions
+
+- **Experimental notes and deviations:**
+  protocol deviations, known issues or failures, missing data explanations, quality flags
+:::
+
+The quality of metadata determines whether a dataset is interpretable and reusable. As a result, thoughtfully designed metadata are an essential part of any good research project.
+
+Equally important, when analyzing data, we must ensure that relevant metadata remain attached to the datasets we work with. One important concept to do that are tidy data formats which we will discuss below.
+
+## Tabular data
+
+Regardless of the experimental method or the form of the raw data, derived data used for quantitative analysis are typically represented as **tabular data**, with numerical values organized into rows and columns.
+
+::: callout-tip
+## Example: Tabular data
+
+- Image-based analyses of cells often produce tables in which each row represents a cell and each column reports a measured property, such as cell size or the intensity of a fluorescent reporter.
+
+- RNA-seq experiments transform short sequencing reads into tables where rows correspond to genes and columns correspond to samples or experimental conditions.
+
+- Plate readers generate tables that record how cell abundance or activity changes over time.
+:::
+
+As a result, tabular data form the foundation of nearly all quantitative analyses in biology, and the ability to efficiently work with tables is essential for rigorous data analysis.
+
+In practice, however, tabular data of interest is often *messy data*. Common examples include Excel files with multiple unrelated tables on the same sheet, merged cells or color-coded labels instead of explicit variables, inconsistent column names or units, or separate sheets for different experimental conditions or replicates. Such structures create a substantial burden for quantitative analysis, and cleaning and reorganizing data often takes more time than the analysis itself. To promote efficient and rigorous data analysis, careful data organization is therefore crucial.
+
+## Tidy data as good default
+
+To better organize data, the concept of **tidy data** has become increasingly influential in data science and quantitative biology. The core idea is to structure tabular data such that it is consistent, flexible, and well suited for computational analysis. Furthermore, tidy data makes the meaning of each data point explicit and allows metadata to be naturally integrated alongside measurements.
+
+::: callout-note
+## Historical context: Tidy data
+
+The tidy data concept is relatively recent. It was popularized by Hadley Wickham in 2014, building on earlier ideas from statistics and database design, and supported by major advances in computational power and memory. Tidy data promotes flexible, computation-oriented representations that are well suited for the analysis of large and complex datasets. We here introduce an adjusted formulation highlighting its use in biological datasets.
+:::
+
+For the analysis of biological data, we adopt in this course the following practical tidy data principles:
+
+::: callout-important
+## Definition: Tidy data for biology
+
+Three major rules define tidy data:
+
+1.  Each row corresponds to a single, well-defined observation.
+
+2.  Each column corresponds to a clearly defined variable, identifier, or metadata information.
+
+3.  Needed identifiers and metadata are included as columns so that data points can be interpreted and compared meaningfully.
+:::
+
+To illustrate these principles, consider measurements of the expression of $\beta-$galactosidase (LacZ), the enzyme responsible for lactose utilization. The lactose operon is a classical system that has been used to uncover fundamental principles of gene regulation. Each observation corresponds to one measured LacZ expression value for a specific strain under a specific growth condition.
+
+Following common table layouts in papers and textbooks, one might store these values in a *wide table*, with rows corresponding e.g. to a specific experimental condition and columns corresponding to cell types.
+
+| condition    | WT    | mut1  | mut2 |
+|:-------------|:------|:------|:-----|
+| no lactose   | 12.4  | 10.8  | 11.6 |
+| with lactose | 245.2 | 180.5 | 92.3 |
+
+While this representation is compact and easy to read, it is more difficult to handle in code. Moreover, it makes it cumbersome to integrate metadata or extend the dataset with additional information.
+
+In a tidy data representation, each row instead corresponds to a single expression measurement. Separate columns explicitly encode the cell type, experimental condition, and measured expression level.
+
+| gene | strain | condition    | expression |
+|:-----|:-------|:-------------|:-----------|
+| lacZ | WT     | no lactose   | 12.4       |
+| lacZ | mut1   | no lactose   | 10.8       |
+| lacZ | mut2   | no lactose   | 11.6       |
+| lacZ | WT     | with lactose | 245.2      |
+| lacZ | mut1   | with lactose | 180.5      |
+| lacZ | mut2   | with lactose | 92.3       |
+
+This representation has several important advantages:
+
+**Advantage 1: Explicit meaning of observations.**
+In this structure, the meaning of each row is unambiguous: it represents one measurement taken under a specific set of biological conditions.
+
+**Advantage 2: Natural integration of metadata.**
+Additional information such as replicate identity, batch, measurement date, or operator can be incorporated naturally by adding further columns, without changing the overall structure of the table.
+
+| gene | strain | condition | expression | date | experimenter | instrument | notes |
+|:---|:---|:---|:---|:---|:---|:---|:---|
+| lacZ | WT | no lactose | 12.4 | 2025-10-08 | Your Name | Tecan Spark |  |
+| lacZ | WT | with lactose | 245.2 | 2025-10-08 | Your Name | Tecan Spark |  |
+| lacZ | mut1 | no lactose | 10.8 | 2025-10-08 | Your Name | Tecan Spark | pipetting error |
+| lacZ | mut1 | with lactose | 180.5 | 2025-10-12 | Your Name | Tecan Spark |  |
+| lacZ | mut2 | no lactose | 11.6 | 2025-10-12 | Your Name | Tecan Spark |  |
+| lacZ | mut2 | with lactose | 92.3 | 2025-10-12 | Your Name | Tecan Spark |  |
+
+**Advantage 3: Straightforward extension to more complex datasets.**
+This structure extends naturally to more complex settings. For example, measurements of additional genes can be incorporated simply by adding a gene identifier as an additional column, without altering the overall organization of the table.
+
+| gene | strain | condition    | expression |
+|:-----|:-------|:-------------|:-----------|
+| lacZ | WT     | no lactose   | 12.4       |
+| lacZ | mut1   | no lactose   | 10.8       |
+| lacZ | mut2   | no lactose   | 11.6       |
+| lacZ | WT     | with lactose | 245.2      |
+| lacZ | mut1   | with lactose | 180.5      |
+| lacZ | mut2   | with lactose | 92.3       |
+| rplA | WT     | no lactose   | 310.5      |
+| rplA | mut1   | no lactose   | 305.1      |
+| rplA | mut2   | no lactose   | 312.7      |
+| rplA | WT     | with lactose | 308.9      |
+| rplA | mut1   | with lactose | 306.8      |
+| rplA | mut2   | with lactose | 311.2      |
+
+**Advantage 4: Alignment with computational tools.**
+Tidy data aligns well with how modern data analysis tools operate, including the pandas library in Python that we will use throughout this course. Tidy data enables efficient filtering and grouping, straightforward merging of datasets, flexible visualization, and reproducible statistical analysis.
+
+In contrast to the original formulation of tidy data, the interpretation used here is intentionally less restrictive. Data from different cell types, strains, experimental conditions, replicates, or even measurement techniques can be stored in the same table, as long as their relationship to each observation is made explicit through appropriate variables and metadata. This flexibility is particularly useful for biological datasets, which often integrate multiple experimental modalities and conditions. Crucially, for this to work, sufficient information must be provided to distinguish experiments, conditions, and measurements unambiguously (rule three). For example, when integrating measurements from different genes, a gene identifier must be included as a column.
+
+In practice, tidy datasets should therefore always be accompanied by a brief README or data dictionary file that documents the meaning, units, and interpretation of each column. This ensures that data remain interpretable not only by computational tools, but also by other researchers and by your future self.
+
+::: callout-note
+## Info: Tidy data as good default not strict requirement
+
+Tidy data is a powerful and flexible default for many analyses, but it is not the only data format in practice.
+For very large datasets, tidy representations can become storage- and memory-intensive, making alternative formats more practical.
+In addition, many scientific fields have developed domain-specific data standards and file formats optimized for particular measurement techniques.
+Tidy data should therefore be viewed as a general organizing principle rather than a universal requirement.
+:::
+
+Next steps: Explore Problem Sets 1 and 2 to become familiar with tidy data and its practical advantages.
