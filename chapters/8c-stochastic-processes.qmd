@@ -1,5 +1,9 @@
 # Stochastic Processes
 
+::: {.callout-note appearance="simple"}
+**Optional topic.** Weeks 8 and 9 (dynamical systems and nonlinear dynamics) are an optional part of the course.
+:::
+
 Differential equations, such as those introduced earlier to model the central dogma, are powerful tools for analyzing dynamical systems. However, by construction, models based on differential equations are deterministic. That is, once the initial condition is specified, the trajectory is entirely determined by the governing equation. For a fixed initial condition, there is no variability in the predicted dynamics.
 
 Real biological processes, however, are noisy and fluctuate in time. This naturally raises the question of how appropriate a purely deterministic description is for modeling biological systems, and whether a probabilistic framework might sometimes be more suitable. This is not merely a technical complication; stochasticity is a fundamental feature of biology, and in many cases it plays a central role in how cells function and make decisions.

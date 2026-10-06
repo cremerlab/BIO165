@@ -119,7 +119,7 @@ For those of you who are new to coding or to many of the mathematical and statis
 To support students at all levels, the course offers optional introductory sessions during the first two Thursdays, an optional Thursday afternoon support session each week, and additional office hours throughout the quarter. We strongly encourage you to take advantage of these resources as you navigate the course.
 :::
 
-## Use of AI tools
+## Use of AI tools {#sec-ai-tools}
 
 Before starting, we want to briefly address the use of AI tools. Large language models and AI systems such as OpenAI ChatGPT, Google Gemini, or Anthropic Claude are developing at a remarkable pace. These tools are particularly effective for coding and data analysis and can substantially accelerate quantitative workflows in the life sciences.
 

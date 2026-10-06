@@ -16,46 +16,87 @@ toc: false
 
 [Quantitative Approaches in Modern Biology]{.hero-title}
 
-[Quantitative methods and statistics to analyze cell biology — from data
-handling and model fitting to uncertainty, hypothesis testing, omics, and
-dynamical systems.]{.hero-tagline}
+[Quantitative methods and statistics to analyze cell, molecular, and
+organismal biology.]{.hero-tagline}
 
 [Start reading <i class="bi bi-arrow-right"></i>](chapters/1a-introduction.qmd){.btn .btn-warning}
 [<i class="bi bi-file-earmark-pdf"></i> Download PDF](BIO165-lecture-script.pdf){.btn .btn-outline-light}
 :::
 
 ::: {.hero-art}
-![](images/hero.svg){fig-alt="Coin tosses add up to a binomial distribution — the same statistics that describe molecule counts in cells."}
+![](images/hero.svg){fig-alt="Data and code, a bell curve, and cells: quantitative analysis of cell biology."}
 :::
 :::
 :::
 
-::: {.coin-band .column-screen}
+:::
+
+:::
+
+::: {.welcome .column-screen}
 ::: {.band-inner}
-## From coin tosses to cells {.unnumbered .unlisted}
 
-[A single coin toss is the simplest random experiment — and the statistical
-thread running through this course. Repeating it explains why averages
-become reliable, how uncertain an estimate is, and when a difference is real.
-The same counting logic then describes sequencing reads, molecule numbers,
-and the stochastic gene expression of individual cells.]{.lead}
+## Welcome to BIO165/265 {.unnumbered}
 
-::: {.coin-path}
-[Coin tosses and the law of large numbers [Week 4]{.step-week}](chapters/4a-probabilistic-view-law.qmd){.coin-step}
-[Standard error and maximum likelihood [Week 4]{.step-week}](chapters/4b-sampling-variability-standard.qmd){.coin-step}
-[Bootstrapping: resampling the tosses [Week 4]{.step-week}](chapters/4c-bootstrapping.qmd){.coin-step}
-[Is the coin fair? Hypothesis testing [Week 5]{.step-week}](chapters/5a-hypothesis-testing.qmd){.coin-step}
-[From binomial to Poisson counts [Week 6]{.step-week}](chapters/6a-counting-statistics-discrete.qmd){.coin-step}
-[Stochastic gene expression [Week 8]{.step-week}](chapters/8c-stochastic-processes.qmd){.coin-step}
+**For beginners.** This course is for biology students with little
+background in coding, mathematics, or statistics. We introduce every concept
+step by step and focus on the conceptual logic rather than on mathematical
+proofs. We apply each concept or method to real biological data in
+Python-based dry labs. If much of this is new to you, plan to invest time: getting comfortable
+with coding and quantitative reasoning takes practice, especially in the first
+weeks. We will guide you through it with these detailed notes, the dry labs,
+tutorials, and office hours. The potential reward is substantial:
+quantitative skills are increasingly central to modern, data-rich biology,
+and this course provides a foundation from which you can develop them
+further.
+
+**A guiding principle: from coin tosses to cells.** Fundamental statistical
+ideas in biology can be understood through the simplest random experiment
+there is — tossing a coin. We will therefore return to the coin toss
+repeatedly throughout this course to illustrate why averages become reliable
+([law of large numbers](chapters/4a-probabilistic-view-law.qmd)), how
+uncertain an estimate is
+([standard error](chapters/4b-sampling-variability-standard.qmd),
+[bootstrapping](chapters/4c-bootstrapping.qmd)), and how to decide whether a
+difference is real ([is the coin fair?](chapters/5a-hypothesis-testing.qmd)).
+The same counting logic then describes sequencing reads and molecule numbers
+([counting statistics](chapters/6a-counting-statistics-discrete.qmd)) and
+the stochastic gene expression of individual cells
+([stochastic processes](chapters/8c-stochastic-processes.qmd)).
+
+**AI as an opportunity to promote quantitative analysis.** We encourage the use of
+AI tools in this course. Large language models can help substantially with
+coding, debugging, and exploring analysis approaches, and they make
+quantitative analysis more accessible than ever before — a real opportunity,
+especially if you are new to coding. At the same time, it is essential to
+maintain *conceptual control*: understand what each analysis step does and
+why, check AI-generated code and results critically, and judge whether an
+outcome makes biological and statistical sense. See
+[Use of AI tools](chapters/1a-introduction.qmd#sec-ai-tools) for our
+recommendations and the course policy.
+
+**Lecture Notes.** This website contains detailed lecture notes that support the in-class
+lectures and provide additional context and detail. The notes are still under
+active development: we have newly put them together for this year's course and
+continue to extend and improve them. Your feedback is highly appreciated —
+please let us know about typos, unclear explanations, or suggestions for
+improvement. Contact [Jonas Cremer](https://cremerlab.github.io/contact.html)
+or open an issue on [GitHub](https://github.com/cremerlab/BIO165/issues).
+
+*Jonas Cremer, March 2026*
+
 :::
 :::
-:::
+
+::: {.content-visible when-format="html"}
+
+::: {.landing}
 
 ::: {.roadmap .column-screen}
 ::: {.band-inner}
 ## The course, week by week {.unnumbered .unlisted}
 
-[[Data & models]{.l-data} [Statistics]{.l-stats} [Dynamics]{.l-dyn}]{.legend}
+[[Data & models]{.l-data} [Statistics]{.l-stats} [Dynamics (optional)]{.l-dyn}]{.legend}
 
 ::: {.week-grid}
 
@@ -120,7 +161,7 @@ and the stochastic gene expression of individual cells.]{.lead}
 :::
 
 ::: {.week-card .dyn}
-[Week 8]{.week-n}
+[Week 8]{.week-n} [Optional]{.optional-badge}
 [<i class="bi bi-activity"></i>Dynamical and stochastic systems]{.week-title}
 
 - [Differential equations](chapters/8a-differential-equation-modeling.qmd)
@@ -129,7 +170,7 @@ and the stochastic gene expression of individual cells.]{.lead}
 :::
 
 ::: {.week-card .dyn}
-[Week 9]{.week-n}
+[Week 9]{.week-n} [Optional]{.optional-badge}
 [<i class="bi bi-toggles"></i>Nonlinear dynamics]{.week-title}
 
 - [Feedback, bistability, and bifurcations](chapters/9a-nonlinear-dynamics.qmd)
@@ -140,24 +181,5 @@ and the stochastic gene expression of individual cells.]{.lead}
 :::
 
 :::
-
-:::
-
-::: {.about}
-
-## About these notes {.unnumbered}
-
-Welcome to BIO165/265! These lecture notes are meant to support the in-class
-lectures and provide additional context and detail. We hope you find them
-helpful as you work through the course.
-
-We have newly put these notes together for this year's course, and your
-feedback is highly appreciated. Please let us know about typos, unclear
-explanations, or suggestions for improvement—your input helps us make these
-notes better for everyone. Contact
-[Jonas Cremer](https://cremerlab.github.io/contact.html) or open an issue on
-[GitHub](https://github.com/cremerlab/BIO165/issues).
-
-*Jonas and Shaili, January 2026*
 
 :::

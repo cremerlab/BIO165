@@ -1,5 +1,9 @@
 # The Dynamical Relation Between mRNA and Proteins
 
+::: {.callout-note appearance="simple"}
+**Optional topic.** Weeks 8 and 9 (dynamical systems and nonlinear dynamics) are an optional part of the course.
+:::
+
 To demonstrate the power of differential equations, we now apply this framework to one of the most fundamental biological processes: the dynamical relationship between gene expression, mRNA, and protein levels. Understanding this relationship better is essential to interpretate transcriptomic and proteomic data.
 
 As a concrete example, consider the previously discussed steady growth of *E. coli* on glucose. Across genes and expression levels, protein abundances are strongly tied to mRNA abundance, as illustrated by the relationship between relative transcript and protein fractions derived from omics data (Fig. [-@fig-prot-mrna]). Importantly, the shown correlation represents only a static snapshot of a highly dynamic process. To understand how such correlation patterns arise and to move toward a dynamical description, we turn to the central dogma of molecular biology:

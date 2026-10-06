@@ -1,5 +1,9 @@
 # Nonlinear Dynamics
 
+::: {.callout-note appearance="simple"}
+**Optional topic.** Weeks 8 and 9 (dynamical systems and nonlinear dynamics) are an optional part of the course.
+:::
+
 So far, we have focused on dynamical systems that are *linear*. For example, in the central dogma model we described protein dynamics for a continously transcripbed gene ($\kappa$ is constant) in the form
 
 $$\frac{dp}{dt} = f(p),$$

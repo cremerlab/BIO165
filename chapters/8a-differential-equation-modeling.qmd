@@ -1,5 +1,9 @@
 # Differential equation and the modeling of dynamical systems
 
+::: {.callout-note appearance="simple"}
+**Optional topic.** Weeks 8 and 9 (dynamical systems and nonlinear dynamics) are an optional part of the course.
+:::
+
 Omics measurements provide detailed descriptions of cellular states, but they capture only momentary snapshots. Yet cells are not static systems, molecular abundances continuously change through production, degradation, and growth. To understand what we measure, we must therefore adopt a dynamical perspective and describe biological processes explicitly in time. The mathematical tool for this is differential equations, which we introduce in this section.
 
 ## A flux perspective to explore biology

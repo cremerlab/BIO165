@@ -1,6 +1,6 @@
 /*-- scss:defaults --*/
 
-// Palette — lab blues plus a teal (cells) and gold (coins) accent
+// Palette — lab blues plus teal (cells), gold (statistics) and coral accents
 $navy:   #1a3a4a;
 $blue:   #2a6496;
 $teal:   #2a9d8f;
@@ -120,59 +120,19 @@ body:has(.landing) {
   .hero .hero-title { font-size: 2rem; }
 }
 
-// Coin-toss thread
-.coin-band {
-  background: #fdf8ec;
-  border-bottom: 1px solid #f3e6c4;
-  padding: 2.8rem 0 2.6rem;
-
-  h2 { margin-top: 0; }
-  .lead { max-width: 52rem; font-size: 1.08rem; }
+// Welcome note
+.welcome {
+  margin: 2.6rem 0 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  .band-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  h2 { border-bottom: none; margin-top: 0; }
+  strong { color: $navy; }
 }
-.coin-path {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 0.9rem;
-  margin-top: 1.4rem;
-  counter-reset: step;
-  > p { display: contents; }
 
-  a.coin-step {
-    position: relative;
-    display: block;
-    background: #fff;
-    border: 1px solid #f0dfb2;
-    border-radius: 10px;
-    padding: 2.3rem 0.9rem 0.9rem;
-    text-decoration: none;
-    color: $navy;
-    font-weight: 600;
-    line-height: 1.3;
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
-    &::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      top: 0.7rem;
-      left: 0.9rem;
-      width: 1.35rem;
-      height: 1.35rem;
-      border-radius: 50%;
-      background: $gold;
-      color: $navy;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-align: center;
-      line-height: 1.35rem;
-      box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e3b553;
-    }
-    .step-week { display: block; font-size: 0.78rem; font-weight: 600; color: #a07a20; margin-top: 0.3rem; }
-    &:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba($navy, 0.1); }
-  }
-}
 
 // Week roadmap
-.roadmap { padding: 2.8rem 0 1rem; }
+.roadmap { padding: 1.5rem 0 2.5rem; }
 .week-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -206,7 +166,19 @@ body:has(.landing) {
   .l-dyn::before   { background: $coral; }
 }
 
-.about { max-width: 1100px; margin: 1.5rem auto 2rem; padding: 0 1.5rem; }
+.optional-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: rgba($coral, 0.12);
+  color: darken($coral, 15%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  vertical-align: 1px;
+}
 
 // ── Dry labs page ────────────────────────────────────────────────────────────
 .lab-list { display: grid; gap: 1rem; margin-top: 1.2rem; }

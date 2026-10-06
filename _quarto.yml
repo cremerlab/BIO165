@@ -73,12 +73,12 @@ book:
         - chapters/7a-omics-data-counting.qmd
         - chapters/7b-nonlinear-dimensionality-reduction.qmd
         - chapters/7c-clustering-algorithms.qmd
-    - part: "Week 8: Dynamical systems and stochastic processes"
+    - part: "Week 8: Dynamical systems and stochastic processes (optional)"
       chapters:
         - chapters/8a-differential-equation-modeling.qmd
         - chapters/8b-dynamical-relation-between.qmd
         - chapters/8c-stochastic-processes.qmd
-    - part: "Week 9: Nonlinear dynamics"
+    - part: "Week 9: Nonlinear dynamics (optional)"
       chapters:
         - chapters/9a-nonlinear-dynamics.qmd
     # END CHAPTERS
